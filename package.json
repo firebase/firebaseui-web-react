@@ -1,0 +1,41 @@
+{
+  "name": "react-firebaseui",
+  "version": "0.1.0",
+  "description": "React wrapper for firebaseui: Javascript library for customizable UI on top of Firebase SDK",
+  "files": [
+    "dist/FirebaseAuth.js",
+    "dist/index.js",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
+  "main": "./dist/firebaseui.js",
+  "scripts": {
+    "build": "babel src --out-dir dist -s",
+    "publish": "npm"
+  },
+  "author": "Google",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firebase/firebaseui-web-react.git"
+  },
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "firebase": "^4.0.0"
+  },
+  "dependencies": {
+    "firebaseui": "^2.3.0",
+    "react": "15.6.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "6.24.1",
+    "babel-plugin-dynamic-import-node": "1.0.2",
+    "babel-plugin-syntax-dynamic-import": "6.18.0",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "1.5.1",
+    "babel-preset-react": "6.24.1"
+  }
+}

@@ -1,0 +1,63 @@
+/**
+ * Copyright 2017 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0288D1;
+  background: radial-gradient(circle, #039BE5, #01579b);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  flex-direction: column;
+}
+.logo {
+  font-family: 'Amaranth', sans-serif;
+  font-size: 200%;
+}
+.logoIcon {
+  top: 4px;
+  font-size: 32px;
+  margin-right: -2px;
+  position: relative;
+}
+.caption {
+  margin: 20px 0 40px 0;
+  font-family: 'Amaranth', sans-serif;
+  font-size: 18px;
+  opacity: 0.8;
+}
+.skip {
+  font-weight:lighter;
+  color:white;
+  opacity: 0.7;
+  width: 100%;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.skip:HOVER {
+  text-decoration: underline;
+}
+.firebaseUi {
+  min-width: 250px;
+}
