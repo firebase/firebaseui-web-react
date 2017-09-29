@@ -1,6 +1,6 @@
-# FirebaseUI Web -- Auth for React
+# FirebaseUI React Components
 
-FirebaseUI for react provides a React Wrapper on top of the [Firebase UI Web library](https://github.com/firebase/firebaseui-web/)   and notably Firebase UI Auth.
+FirebaseUI React Components provides a React Wrapper on top of the [Firebase UI Web library](https://github.com/firebase/firebaseui-web/) and notably Firebase UI Auth.
 
 FirebaseUI Auth provides a drop-in auth solution that handles the UI flows for signing in users with email addresses and passwords, and Identity Provider Sign In using Google, Facebook and others. It is built on top of Firebase Auth.
 

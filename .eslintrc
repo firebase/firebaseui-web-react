@@ -2,13 +2,10 @@
   "extends": [
     "plugin:flowtype/recommended",
     "google",
-    "prettier",
-    "prettier/react",
     "plugin:react/recommended"
   ],
   "plugins": [
-    "flowtype",
-    "prettier"
+    "flowtype"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
