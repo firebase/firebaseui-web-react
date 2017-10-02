@@ -56,7 +56,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <div className={styles.logo}><i className={styles.logoIcon + " material-icons"}>photo</i> My App</div>
+        <div className={styles.logo}><i className={styles.logoIcon + ' material-icons'}>photo</i> My App</div>
         <div className={styles.caption}>This is a cool demo app</div>
         {!this.state.signedIn &&
           <div>
