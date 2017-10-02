@@ -1,6 +1,6 @@
 # FirebaseUI React Components
 
-FirebaseUI React Components provides a React Wrapper on top of the [Firebase UI Web library](https://github.com/firebase/firebaseui-web/) and notably Firebase UI Auth.
+FirebaseUI React Components provides React Wrappers on top of the [Firebase UI Web library](https://github.com/firebase/firebaseui-web/) and notably Firebase UI Auth.
 
 FirebaseUI Auth provides a drop-in auth solution that handles the UI flows for signing in users with email addresses and passwords, and Identity Provider Sign In using Google, Facebook and others. It is built on top of Firebase Auth.
 
@@ -50,7 +50,7 @@ firebase.initializeApp(config);
 const uiConfig = {
   // Popup signin flow rather than redirect flow.
   signInFlow: 'popup',
-  // Redirect to /signedIn after sign in is successful. Alternatively you can use provide a callbacks.signInSuccess function.
+  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
   signInSuccessUrl: '/signedIn',
   // We will display Google and Facebook as auth providers.
   signInOptions: [
@@ -62,9 +62,11 @@ const uiConfig = {
 class SignInScreen extends React.Component {
   render() {
     return (
-      <h1>My App</h1>
-      <p>Please sign-in:</p>
-      <FirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+      <div>
+        <h1>My App</h1>
+        <p>Please sign-in:</p>
+        <FirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+      </div>
     );
   }
 }
@@ -94,13 +96,12 @@ class SignInScreen extends React.Component {
   uiConfig = {
     // Popup signin flow rather than redirect flow.
     signInFlow: 'popup',
-    // Redirect to /signedIn after sign in is successful. Alternatively you can use provide a callbacks.signInSuccess function.
-    signInSuccessUrl: '/signedIn',
     // We will display Google and Facebook as auth providers.
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID
     ],
+    // Sets the `signedIn` state property to `true` once signed in.
     callbacks: {
       signInSuccess: () => {
         this.setState({signedIn: true});
@@ -116,14 +117,18 @@ class SignInScreen extends React.Component {
   render() {
     if (!this.state.signedIn) {
       return (
-        <h1>My App</h1>
-        <p>Please sign-in:</p>
-        <FirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
+        <div>
+          <h1>My App</h1>
+          <p>Please sign-in:</p>
+          <FirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
+        </div>
       );
     }
     return (
-      <h1>My App</h1>
-      <p>Welcome! You are now signed-in!</p>
+      <div>
+        <h1>My App</h1>
+        <p>Welcome! You are now signed-in!</p>
+      </div>
     );
   }
 }
@@ -134,7 +139,7 @@ class SignInScreen extends React.Component {
 The `FirebaseAuth` component needs a global CSS to get proper styling. The CSS is already import within `FirebaseAuth`.
 If you are using webpack you'll need to add [CSS loaders](https://github.com/webpack-contrib/css-loader):
 
-```json
+```js
 {
   module: {
     rules: [
@@ -151,7 +156,7 @@ If you are using webpack you'll need to add [CSS loaders](https://github.com/web
 
 If you are using [`ExtractTextPlugin`](https://github.com/webpack-contrib/extract-text-webpack-plugin) to extract a CSS file from the required CSS files you would typically use:
 
-```json
+```js
 {
   plugins: [new ExtractTextPlugin('./bundle.css')],
   module: {
@@ -173,7 +178,7 @@ If you are using [`ExtractTextPlugin`](https://github.com/webpack-contrib/extrac
 
 If you are using CSS modules in your app you need to handle the CSS files in `/node_modules/` in a separate loader so that they are imported as global CSS files and not modules. Your setup could look like:
 
-```json
+```js
 {
   plugins: [new ExtractTextPlugin('./bundle.css')],
   module: {
@@ -227,12 +232,11 @@ If you would like to see an example of styling, have a look at the [example app]
 
 ## Using multiple instances
 
-In the rare case where you would need to load multiple instances of `FirebaseAuth` at the same time you need to pass them a different ID using the `elementId` attribute. For instance:
+In the case where you would need to load multiple instances of `FirebaseAuth` at the same time you need to set them up with a different ID using the `elementId` attribute. For instance:
 
 ```js
 <FirebaseAuth elementId="auth_1" uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
-<FirebaseAuth elementId="auth_2" uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
-
+<FirebaseAuth elementId="auth_2" uiConfig={this.otherUiConfig} firebaseAuth={firebase.auth()}/>
 ```
 
 

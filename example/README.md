@@ -5,25 +5,24 @@ This is a sample app showing a usage of the react-firebaseui package in a react 
 
 ## Initial setup, building and serving.
 
-Run `npm install` to install all run-time and build dependencies.
-
-```bash
-npm install
-```
-
-Run the build script to transpile and pack the app sources.
-
-```bash
-npm run build
-```
-
-Serve the app
-
-```bash
-npm run serve
-```
-
-Try out the app by opening [http://localhost:5000](http://localhost:5000) in your browser.
+1. Create a Firebase project using the [Firebase console](https://console.firebase.google.com).
+1. Install the run-time and build dependencies:
+    ```bash
+    npm install
+    ```
+1. Tell Firebase to use your new project locally:
+    ```bash
+    firebase use --add
+    ```
+1. Run the build script to transpile and pack the sources:
+    ```bash
+    npm run build
+    ```
+1. Serve the app locally:
+    ```bash
+    npm run serve
+    ```
+1. Try out the app by opening [http://localhost:5000](http://localhost:5000) in your browser.
 
 
 ## Contributing
