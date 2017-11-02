@@ -24,8 +24,8 @@ npm install --save firebase
 In your app:
   1. Import the `FirebaseAuth` component from `react-firebaseui` and import `firebase`.
   2. Configure Firebase as described in [the Firebase Docs](https://firebase.google.com/docs/web/setup).
-  3. Configure Firebase UI as described in [firebase/firebaseui-web](https://github.com/firebase/firebaseui-web#configuration).
-  4. Use the `FirebaseAuth` component in your template passing it the configuration and a Firebase Auth instance.
+  3. Write a Firebase UI configuration as described in [firebase/firebaseui-web](https://github.com/firebase/firebaseui-web#configuration).
+  4. Use the `FirebaseAuth` component in your template passing it the **Firebase UI configuration** and a **Firebase Auth instance**.
 
 
 ### Using `FirebaseAuth` with a redirect
@@ -136,7 +136,7 @@ class SignInScreen extends React.Component {
 
 ## Packing your app
 
-The `FirebaseAuth` component needs a global CSS to get proper styling. The CSS is already import within `FirebaseAuth`.
+The `FirebaseAuth` component needs a global CSS to get proper styling. The CSS is already imported within `FirebaseAuth`.
 If you are using webpack you'll need to add [CSS loaders](https://github.com/webpack-contrib/css-loader):
 
 ```js
@@ -183,6 +183,7 @@ If you are using CSS modules in your app you need to handle the CSS files in `/n
   plugins: [new ExtractTextPlugin('./bundle.css')],
   module: {
     rules: [
+      // CSS loaders for CSS modules in your project. We exclude CSS files in ./node_modules
       {
         test: /\.css$/,
         exclude: [/\.global\./, /node_modules/],
@@ -203,6 +204,8 @@ If you are using CSS modules in your app you need to handle the CSS files in `/n
             ]
           })
       },
+
+      // CSS loaders for global CSS files which includes files in ./node_modules
       {
         test: /\.css/,
         include: [/\.global\./, /node_modules/],
