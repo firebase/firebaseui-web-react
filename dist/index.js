@@ -19,6 +19,6 @@
 var FirebaseAuth = require('./FirebaseAuth');
 
 exports = {
-  FirebaseAuth
+  FirebaseAuth: FirebaseAuth
 };
 //# sourceMappingURL=index.js.map
