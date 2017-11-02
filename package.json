@@ -4,12 +4,14 @@
   "description": "React wrapper for firebaseui: Javascript library for customizable UI on top of Firebase SDK",
   "files": [
     "dist/FirebaseAuth.js",
+    "dist/FirebaseAuth.js.map",
     "dist/index.js",
+    "dist/index.js.map",
     "LICENSE",
     "README.md",
     "package.json"
   ],
-  "main": "./dist/firebaseui.js",
+  "main": "./dist/index.js",
   "scripts": {
     "build": "babel src --out-dir dist -s",
     "publish": "npm"
