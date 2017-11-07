@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-const FirebaseAuth = require('./FirebaseAuth');
+import FirebaseAuth from './FirebaseAuth';
 
-exports = {
-  FirebaseAuth: FirebaseAuth
-};
+exports.FirebaseAuth = FirebaseAuth;

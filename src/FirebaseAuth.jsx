@@ -24,7 +24,6 @@ const ELEMENT_ID = 'firebaseui_container';
  * React Component wrapper for the FirebaseUI Auth widget.
  */
 export default class FirebaseAuth extends React.Component {
-
   /**
    * Constructor  Firebase Auth UI component
    *
@@ -78,6 +77,6 @@ export default class FirebaseAuth extends React.Component {
   render() {
     return (
       <div id={this.elementId}/>
-    )
+    );
   }
 }
