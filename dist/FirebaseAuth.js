@@ -27,6 +27,7 @@ var FirebaseAuth = function (_React$Component) {
     _this.uiConfig = props.uiConfig;
     _this.firebaseAuth = props.firebaseAuth;
     _this.elementId = props.elementId || ELEMENT_ID;
+    _this.className = props.className;
     return _this;
   }
 
@@ -44,7 +45,7 @@ var FirebaseAuth = function (_React$Component) {
   };
 
   FirebaseAuth.prototype.render = function render() {
-    return _react2.default.createElement('div', { id: this.elementId });
+    return _react2.default.createElement('div', { className: this.className, id: this.elementId });
   };
 
   return FirebaseAuth;

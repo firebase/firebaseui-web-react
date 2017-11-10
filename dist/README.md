@@ -92,6 +92,10 @@ firebase.initializeApp(config);
 
 class SignInScreen extends React.Component {
   
+  state = {
+    signedIn: false // Local signed-in state.
+  };
+  
   // Configure FirebaseUI.
   uiConfig = {
     // Popup signin flow rather than redirect flow.
@@ -105,13 +109,9 @@ class SignInScreen extends React.Component {
     callbacks: {
       signInSuccess: () => {
         this.setState({signedIn: true});
-        return false;
+        return false; // Avoid redirects after sign-in.
       }
     }
-  };
-  
-  state = {
-    signedIn: false
   };
   
   render() {
