@@ -1,6 +1,6 @@
 {
   "name": "react-firebaseui",
-  "version": "1.0.6",
+  "version": "1.0.10",
   "description": "React wrapper for firebaseui: Javascript library for customizable UI on top of Firebase SDK",
   "files": [
     "FirebaseAuth.js",
