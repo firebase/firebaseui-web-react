@@ -13,8 +13,8 @@
   ],
   "main": "index.js",
   "scripts": {
-    "build": "babel src --out-dir dist -s; cp README.md LICENSE package.json dist; cd dist && npm install --only=production",
-    "publish": "npm run build && cd dist && npm publish"
+    "build": "babel src --out-dir dist -s; cp README.md LICENSE package.json dist; cd dist && npm install --only=production && cd -",
+    "pub": "npm run build && npm publish dist"
   },
   "author": "Google",
   "repository": {
