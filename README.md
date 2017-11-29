@@ -222,10 +222,10 @@ If you are using CSS modules in your app you need to handle the CSS files in `/n
 
 ## Styling 
  
-To change the styling of the `FirebaseAuth` widget you can override its CSS. You can import a CSS that will be included globally in your packed application. For instance create a `firebaseui-overrides.globlal.css` file and import it in your app:
+To change the styling of the `FirebaseAuth` widget you can override its CSS. You can import a CSS that will be included globally in your packed application. For instance create a `firebaseui-overrides.global.css` file and import it in your app:
 
 ```js
-import './firebaseui-styling.global.css'; // Import globally.
+import './firebaseui-overrides.global.css'; // Import globally.
 ```
 
 > Note: If you are using the "With ExtractTextPlugin and CSS modules" Webpack build rule above, the `.global.css` suffixe will make sure the CSS file is imported globally and not ran through modules support.
