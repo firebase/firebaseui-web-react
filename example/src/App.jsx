@@ -14,10 +14,16 @@
  * limitations under the License.
  */
 
+// React core.
 import React from 'react';
+import ReactDOM from 'react-dom';
+
+// Firebase.
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { FirebaseAuth } from 'react-firebaseui';
+
+// Styles
 import styles from './app.css'; // This uses CSS modules.
 import './firebaseui-styling.global.css'; // Import globally.
 
@@ -72,3 +78,6 @@ export default class App extends React.Component {
     )
   }
 }
+
+// Load the app in the browser.
+ReactDOM.render(<App/>, document.getElementById('app'));
