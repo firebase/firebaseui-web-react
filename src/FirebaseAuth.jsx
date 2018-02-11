@@ -35,7 +35,6 @@ export default class FirebaseAuth extends React.Component {
 
     this.uiConfig = props.uiConfig;
     this.firebaseAuth = props.firebaseAuth;
-    this.elementId = props.elementId || ELEMENT_ID;
     this.className = props.className;
   }
 
@@ -75,9 +74,6 @@ export default class FirebaseAuth extends React.Component {
     uiConfig: Object,
     // The Firebase App auth instance to use.
     firebaseAuth: Object,
-    // The ID of the underlying container that we'll generate.
-    // Use this if you use more than one instance at a time in your app.
-    elementId?: String,
     // Callback that will be passed the FirebaseUi instance before it is
     // started. This allows access to certain configuration options such as
     // disableAutoSignIn().
@@ -90,7 +86,7 @@ export default class FirebaseAuth extends React.Component {
    */
   render() {
     return (
-      <div className={this.className} id={this.elementId}/>
+      <div className={this.className} id={ELEMENT_ID}/>
     );
   }
 }

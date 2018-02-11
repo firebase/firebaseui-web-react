@@ -269,16 +269,6 @@ import './firebaseui-overrides.global.css'; // Import globally.
 If you would like to see an example of styling, have a look at the [example app](./example).
 
 
-## Using multiple instances
-
-In the case where you would need to load multiple instances of `FirebaseAuth` at the same time you need to set them up with a different ID using the `elementId` attribute. For instance:
-
-```js
-<StyledFirebaseAuth elementId="auth_1" uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
-<StyledFirebaseAuth elementId="auth_2" uiConfig={this.otherUiConfig} firebaseAuth={firebase.auth()}/>
-```
-
-
 ## Contributing
 
 We'd love that you contribute to the project. Before doing so please read our [Contributor guide](CONTRIBUTING.md).
