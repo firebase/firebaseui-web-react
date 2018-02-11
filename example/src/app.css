@@ -28,6 +28,7 @@
   align-items: center;
   color: white;
   flex-direction: column;
+  font-family: sans-serif;
 }
 .logo {
   font-family: 'Amaranth', sans-serif;
