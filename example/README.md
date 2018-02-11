@@ -6,6 +6,7 @@ This is a sample app showing a usage of the react-firebaseui package in a react 
 ## Initial setup, building and serving.
 
 1. Create a Firebase project using the [Firebase console](https://console.firebase.google.com).
+1. In the **Authentication** section of your project's Firebase console, open the **Sign-In Method** tab and enable the **Google** sign-in provider. Optionally, you can also enable Facebook, this requires to create and configure a Facebook application on [Facebook for developers](https://developers.facebook.com/).
 1. Install the run-time and build dependencies:
     ```bash
     npm install
