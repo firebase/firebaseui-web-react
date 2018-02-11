@@ -71,7 +71,7 @@ export default class App extends React.Component {
         }
         {this.state.signedIn &&
         <div>
-          You are now signed In!
+          Hello {firebaseApp.auth().currentUser.displayName}. You are now signed In!
         </div>
         }
       </div>
