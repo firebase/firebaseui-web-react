@@ -39,6 +39,9 @@ var FirebaseAuth = function (_React$Component) {
     if (this.uiConfig.signInFlow === 'popup') {
       this.firebaseUiWidget.reset();
     }
+    if (this.uiCallback) {
+      this.uiCallback(this.firebaseUiWidget);
+    }
     this.firebaseUiWidget.start('#' + this.elementId, this.uiConfig);
   };
 
