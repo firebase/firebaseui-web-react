@@ -28,9 +28,13 @@ In your app:
   4. Use the `FirebaseAuth` component in your template passing it the **Firebase UI configuration** and a **Firebase Auth instance**.
 
 
-### `FirebaseAuth` vs `StyledFirebaseAuth`
+### `FirebaseAuth` vs. `StyledFirebaseAuth`
 
-There are two components that allow you to add FirebaseUI auth to your application: `FirebaseAuth` and `StyledFirebaseAuth`. The difference is that `FirebaseAuth` has a reference to the Firebase UI CSS (it `requires` the CSS) whereas `StyledFirebaseAuth` includes the CSS directly in its built. For simplicity you should use `StyledFirebaseAuth` and for better performances and build sizes you should use `FirebaseAuth`. `FirebaseAuth` is meant to be used with a CSS/style loader as part of yor webpack built configuration. See the [Packing your app](#packing-your-app) section
+There are two similar components that allow you to add FirebaseUI auth to your application: `FirebaseAuth` and `StyledFirebaseAuth`.
+ - `FirebaseAuth` has a reference to the FirebaseUI CSS file (it `requires` the CSS).
+ - `StyledFirebaseAuth` is bundled with the CSS directly.
+ 
+For simplicity you should use `StyledFirebaseAuth` and for potential better performances and build sizes you can use `FirebaseAuth`. `FirebaseAuth` is meant to be used with a CSS/style loader as part of yor webpack built configuration. See the [Packing your app](#packing-your-app) section.
 
 
 ### Using `StyledFirebaseAuth` with a redirect
@@ -97,6 +101,7 @@ firebase.initializeApp(config);
 
 class SignInScreen extends React.Component {
   
+  // The component's Local state.
   state = {
     signedIn: false // Local signed-in state.
   };
@@ -110,13 +115,17 @@ class SignInScreen extends React.Component {
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID
     ],
-    // Avoid redirects after sign-in.
-    callbacks: {signInSuccess: () => false}
+    callbacks: {
+      // Avoid redirects after sign-in.
+      signInSuccess: () => false
+    }
   };
 
   // Listen to the Firebase Auth state and set the local state.
   componentWillMount() {
-    firebase.auth().onAuthStateChanged((user) => this.setState({signedIn: !!user}));
+    firebase.auth().onAuthStateChanged(
+        (user) => this.setState({signedIn: !!user})
+    );
   }
   
   render() {
@@ -265,6 +274,13 @@ import './firebaseui-styling.global.css'; // Import globally. Not with CSS modul
 If you would like to see an example of styling, have a look at the [example app](./example).
 
 Alternatively you can include the styling in a `<style>` tag in your application's markup.
+
+
+## Server-Side Rendering (SSR)
+
+FirebaseUI React cannot be rendered on the serverside becasue the underlying, wrapped library ([FirebaseUI](https://npmjs.com/package/firebaseui) does not work server-side.
+
+You may still import and include the library in an app that uses SSR: there should be no errors but no elements will be rendered.
 
 
 ## Contributing
