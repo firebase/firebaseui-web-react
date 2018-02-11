@@ -39,16 +39,10 @@ const config = {
   module: {
     rules: [
       {
-        enforce: 'pre',
-        test: /\.jsx?$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/
-      },
-      {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        include: [path.resolve('frontend'), path.resolve('node_modules/preact-compat/src')],
+        include: [path.resolve('src')],
         query: {
           babelrc: false,
           presets: [
@@ -105,16 +99,6 @@ const config = {
               }
             ]
           })
-      },
-      {/* Workaround for issue https://github.com/firebase/firebaseui-web/issues/163 */},
-      {
-        test: /npm\.js$/,
-        loader: 'string-replace-loader',
-        include: path.resolve('node_modules/firebaseui/dist'),
-        query: {
-          search: 'require(\'firebase\');',
-          replace: 'require(\'firebase/app\');require(\'firebase/auth\')',
-        }
       }
     ]
   }
