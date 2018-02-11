@@ -111,16 +111,12 @@ class SignInScreen extends React.Component {
       firebase.auth.FacebookAuthProvider.PROVIDER_ID
     ],
     // Avoid redirects after sign-in.
-    callbacks: {
-      signInSuccess: () => false
-    }
+    callbacks: {signInSuccess: () => false}
   };
 
   // Listen to the Firebase Auth state and set the local state.
   componentWillMount() {
-    firebase.auth().onAuthStateChanged((user) => {
-      this.setState({signedIn: !!user});
-    });
+    firebase.auth().onAuthStateChanged((user) => this.setState({signedIn: !!user}));
   }
   
   render() {
