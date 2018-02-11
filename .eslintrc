@@ -7,6 +7,9 @@
   "plugins": [
     "flowtype"
   ],
+  "rules": {
+    "max-len": [2, 100, 2]
+  },
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2016,
