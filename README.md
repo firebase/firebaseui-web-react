@@ -30,7 +30,7 @@ In your app:
 
 ### `FirebaseAuth` vs `StyledFirebaseAuth`
 
-There are two components that allow you to add FirebaseUI auth to your application: `FirebaseAuth` and `StyledFirebaseAuth`. The difference is that `FirebaseAuth` has a reference to the Firebase UI CSS (it `requires` the CSS) whereas `StyledFirebaseAuth` includes the CSS directly in its built. For simplicity you should use `StyledFirebaseAuth` and for better performances and build sizes you should use `FirebaseAuth`. `FirebaseAuth` is meant to be used with a CSS/style loader as part of yor webpack built configuration. See the [Packing your app](#packing) section
+There are two components that allow you to add FirebaseUI auth to your application: `FirebaseAuth` and `StyledFirebaseAuth`. The difference is that `FirebaseAuth` has a reference to the Firebase UI CSS (it `requires` the CSS) whereas `StyledFirebaseAuth` includes the CSS directly in its built. For simplicity you should use `StyledFirebaseAuth` and for better performances and build sizes you should use `FirebaseAuth`. `FirebaseAuth` is meant to be used with a CSS/style loader as part of yor webpack built configuration. See the [Packing your app](#packing-your-app) section
 
 
 ### Using `StyledFirebaseAuth` with a redirect
@@ -158,7 +158,6 @@ render() {
 }
 ```
 
-<a href="#packing"/>
 
 ## Packing your app
 
