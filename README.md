@@ -110,14 +110,18 @@ class SignInScreen extends React.Component {
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID
     ],
-    // Sets the `signedIn` state property to `true` once signed in.
+    // Avoid redirects after sign-in.
     callbacks: {
-      signInSuccess: () => {
-        this.setState({signedIn: true});
-        return false; // Avoid redirects after sign-in.
-      }
+      signInSuccess: () => false
     }
   };
+
+  // Listen to the Firebase Auth state and set the local state.
+  componentWillMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.setState({signedIn: !!user});
+    });
+  }
   
   render() {
     if (!this.state.signedIn) {
@@ -132,7 +136,8 @@ class SignInScreen extends React.Component {
     return (
       <div>
         <h1>My App</h1>
-        <p>Welcome! You are now signed-in!</p>
+        <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
+        <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
       </div>
     );
   }
