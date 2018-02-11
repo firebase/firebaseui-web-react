@@ -1,6 +1,6 @@
 {
   "name": "react-firebaseui",
-  "version": "1.0.10",
+  "version": "1.1.0",
   "description": "React wrapper for firebaseui: Javascript library for customizable UI on top of Firebase SDK",
   "files": [
     "FirebaseAuth.js",
@@ -13,7 +13,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "build": "babel src --out-dir dist -s; cp README.md LICENSE package.json dist; cd dist && npm install --only=production && cd -",
+    "build": "webpack -p; babel src --out-dir dist -s; cp README.md LICENSE package.json dist; cd dist && npm install --only=production && cd -",
     "pub": "npm run build && npm publish dist"
   },
   "author": "Google",
@@ -53,6 +53,10 @@
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^7.1.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "css-loader": "^0.28.5",
+    "style-loader": "^0.18.2",
+    "babel-loader": "7.1.1",
+    "webpack": "^3.5.5"
   }
 }
