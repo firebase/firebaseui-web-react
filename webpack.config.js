@@ -24,6 +24,12 @@ const config = {
   output: {
     filename: 'StyledFirebaseAuth.js',
     path: path.resolve(__dirname, './dist'),
+    library: 'StyledFirebaseAuth',
+    libraryTarget: 'commonjs2',
+  },
+  externals: {
+    'react': 'React',
+    'firebaseui': 'firebaseui',
   },
   devtool: 'source-map',
   resolve: {
@@ -40,17 +46,12 @@ const config = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        include: [path.resolve('src')],
+        include: path.resolve(__dirname, './src'),
       },
       {
         test: /\.css/,
-        include: [/\.global\./, /node_modules/],
-        loader: 'css-loader',
-        options: {
-          importLoaders: 1,
-          modules: false,
-          minimize: true,
-        },
+        include: /node_modules/,
+        use: ['style-loader', 'css-loader'],
       }]}};
 
 module.exports = config;
