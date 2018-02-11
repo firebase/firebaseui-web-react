@@ -6,10 +6,10 @@
   },
   "dependencies": {
     "firebase": "^4.8.0",
-    "firebaseui": "^2.3.0",
+    "firebaseui": "^2.6.0",
     "react": "15.6.1",
     "react-dom": "15.6.1",
-    "react-firebaseui": "^1.0.10"
+    "react-firebaseui": "^1.1.0"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",

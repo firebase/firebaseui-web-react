@@ -30,6 +30,12 @@
   flex-direction: column;
   font-family: sans-serif;
 }
+.signedIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .logo {
   font-family: 'Amaranth', sans-serif;
   font-size: 200%;
@@ -61,4 +67,10 @@
 }
 .firebaseUi {
   min-width: 250px;
+}
+.button {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+  margin-top: 10px;
 }

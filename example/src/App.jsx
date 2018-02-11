@@ -42,19 +42,22 @@ export default class App extends React.Component {
     signInFlow: 'popup',
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
     ],
     callbacks: {
-      signInSuccess: () => {
-        this.setState({signedIn: true});
-        return false;
-      }
-    }
+      signInSuccess: () => false,
+    },
   };
 
   state = {
-    signedIn: false
+    signedIn: false,
   };
+
+  componentWillMount() {
+    firebaseApp.auth().onAuthStateChanged((user) => {
+      this.setState({signedIn: !!user});
+    });
+  }
 
   /**
    * @inheritDoc
@@ -68,13 +71,15 @@ export default class App extends React.Component {
         <div className={styles.caption}>This is a cool demo app</div>
         {!this.state.signedIn &&
           <div>
-            <FirebaseAuth className={styles.firebaseUi} uiConfig={this.uiConfig} firebaseAuth={firebaseApp.auth()}/>
+            <FirebaseAuth className={styles.firebaseUi} uiConfig={this.uiConfig}
+                          firebaseAuth={firebaseApp.auth()}/>
           </div>
         }
         {this.state.signedIn &&
-        <div>
-          Hello {firebaseApp.auth().currentUser.displayName}. You are now signed In!
-        </div>
+          <div className={styles.signedIn}>
+            Hello {firebaseApp.auth().currentUser.displayName}. You are now signed In!
+            <a className={styles.button} onClick={() => firebaseApp.auth().signOut()}>Sign-out</a>
+          </div>
         }
       </div>
     );
