@@ -21,7 +21,7 @@ import ReactDOM from 'react-dom';
 // Firebase.
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import FirebaseAuth from 'react-firebaseui/FirebaseAuth';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 // Styles
 import styles from './app.css'; // This uses CSS modules.
@@ -36,8 +36,7 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 /**
  * The Splash Page containing the login UI.
  */
-export default class App extends React.Component {
-
+class App extends React.Component {
   uiConfig = {
     signInFlow: 'popup',
     signInOptions: [
@@ -53,6 +52,9 @@ export default class App extends React.Component {
     signedIn: false,
   };
 
+  /**
+   * @inheritDoc
+   */
   componentWillMount() {
     firebaseApp.auth().onAuthStateChanged((user) => {
       this.setState({signedIn: !!user});
@@ -71,8 +73,8 @@ export default class App extends React.Component {
         <div className={styles.caption}>This is a cool demo app</div>
         {!this.state.signedIn &&
           <div>
-            <FirebaseAuth className={styles.firebaseUi} uiConfig={this.uiConfig}
-                          firebaseAuth={firebaseApp.auth()}/>
+            <StyledFirebaseAuth className={styles.firebaseUi} uiConfig={this.uiConfig}
+                                firebaseAuth={firebaseApp.auth()}/>
           </div>
         }
         {this.state.signedIn &&

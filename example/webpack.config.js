@@ -24,16 +24,16 @@ const config = {
   entry: './src/App.jsx',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, './public')
+    path: path.resolve(__dirname, './public'),
   },
   devtool: 'cheap-module-source-map',
   resolve: {
-    extensions: ['.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.json'],
   },
   stats: {
     colors: true,
     reasons: true,
-    chunks: true
+    chunks: true,
   },
   plugins: [new ExtractTextPlugin('./bundle.css')],
   module: {
@@ -42,7 +42,7 @@ const config = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        include: [path.resolve('src')]
+        include: path.resolve(__dirname, './src'),
       },
       {
         test: /\.css$/,
@@ -50,7 +50,7 @@ const config = {
         loader: ExtractTextPlugin.extract(
           {
             fallback: 'style-loader',
-            use:[
+            use: [
               {
                 loader: 'css-loader',
                 options: {
@@ -58,7 +58,7 @@ const config = {
                   modules: true,
                   autoprefixer: true,
                   minimize: true,
-                  localIdentName: '[name]__[local]___[hash:base64:5]'
+                  localIdentName: '[name]__[local]___[hash:base64:5]',
                 }
               }
             ]
@@ -70,13 +70,13 @@ const config = {
         loader: ExtractTextPlugin.extract(
           {
             fallback: 'style-loader',
-            use:[
+            use: [
               {
                 loader: 'css-loader',
                 options: {
                   importLoaders: 1,
                   modules: false,
-                  minimize: true
+                  minimize: true,
                 }
               }
             ]
