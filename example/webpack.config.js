@@ -42,25 +42,7 @@ const config = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        include: [path.resolve('src')],
-        query: {
-          babelrc: false,
-          presets: [
-            "react",
-            ["env", {
-              "targets": {
-                "browsers": "last 2 versions"
-              },
-              "loose": true,
-              "modules": "commonjs"
-            }]
-          ],
-          "plugins": [
-            "transform-decorators",
-            "transform-class-properties",
-            "transform-object-rest-spread"
-          ]
-        }
+        include: [path.resolve('src')]
       },
       {
         test: /\.css$/,
