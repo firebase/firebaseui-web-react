@@ -134,6 +134,26 @@ class SignInScreen extends React.Component {
 }
 ```
 
+### Accessing the FirebaseUI instance
+
+To allow for further configuration you can access the firebaseUI instance before it is started.
+To do this you can pass a `uiCallback` callback function that wil be passed the Firebase UI instance. For example here is how to enable the `disableAutoSignIn()` option:
+
+```js
+// ...
+
+render() {
+  return (
+    <div>
+      <h1>My App</h1>
+      <p>Please sign-in:</p>
+      <FirebaseAuth uiCallback={ui => ui.disableAutoSignIn()} uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
+    </div>
+  );
+}
+```
+
+
 ## Packing your app
 
 The `FirebaseAuth` component needs a global CSS to get proper styling. The CSS is already imported within `FirebaseAuth`.

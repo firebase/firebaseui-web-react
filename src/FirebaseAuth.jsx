@@ -53,6 +53,9 @@ export default class FirebaseAuth extends React.Component {
     if (this.uiConfig.signInFlow === 'popup') {
       this.firebaseUiWidget.reset();
     }
+    if (this.uiCallback) {
+      this.uiCallback(this.firebaseUiWidget);
+    }
     this.firebaseUiWidget.start('#' + this.elementId, this.uiConfig);
   }
 
@@ -67,11 +70,18 @@ export default class FirebaseAuth extends React.Component {
    * Properties types.
    */
   props: {
-    uiConfig: Object, // The Firebase UI Web UI Config object.
-                      // See: https://github.com/firebase/firebaseui-web#configuration
-    firebaseAuth: Object, // The Firebase App auth instance to use.
-    elementId?: String, // The ID of the underlying container that we'll generate.
-                        // Use this if you use more than one instance at a time in your app.
+    // The Firebase UI Web UI Config object.
+    // See: https://github.com/firebase/firebaseui-web#configuration
+    uiConfig: Object,
+    // The Firebase App auth instance to use.
+    firebaseAuth: Object,
+    // The ID of the underlying container that we'll generate.
+    // Use this if you use more than one instance at a time in your app.
+    elementId?: String,
+    // Callback that will be passed the FirebaseUi instance before it is
+    // started. This allows access to certain configuration options such as
+    // disableAutoSignIn().
+    uiCallback?: Function,
     className: String
   };
 
