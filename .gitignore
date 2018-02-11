@@ -5,3 +5,7 @@
 /example/src/firebase-config.json
 /example/.firebaserc
 react-firebaseui-*.tgz
+example/public/bundle.css
+example/public/bundle.css.map
+example/public/bundle.js
+example/public/bundle.js.map
