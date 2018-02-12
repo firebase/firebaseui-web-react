@@ -28,7 +28,7 @@ const config = {
     libraryTarget: 'commonjs2',
   },
   externals: {
-    'react': 'React',
+    'react': 'react',
     'firebaseui': 'firebaseui',
   },
   devtool: 'source-map',
