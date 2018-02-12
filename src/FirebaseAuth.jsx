@@ -55,7 +55,7 @@ export default class FirebaseAuth extends React.Component {
     if (this.uiCallback) {
       this.uiCallback(this.firebaseUiWidget);
     }
-    this.firebaseUiWidget.start('#' + this.elementId, this.uiConfig);
+    this.firebaseUiWidget.start('#' + ELEMENT_ID, this.uiConfig);
   }
 
   /**
