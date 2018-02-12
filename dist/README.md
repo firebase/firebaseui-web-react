@@ -258,25 +258,17 @@ If you are using CSS modules in your app you need to handle the CSS files in `/n
 
 ## Styling 
  
-To change the styling of the `FirebaseAuth` or the `StyledFirebaseAuth` widget you can override some of its CSS. You can import a CSS that will be included globally in your packed application. For instance create a `firebaseui-overrides.global.css` file and import it in your app:
+To change the styling of the `FirebaseAuth` or the `StyledFirebaseAuth` widget you can override some of its CSS. To do this, import a CSS that will be included in your packed application. For instance create a `firebaseui-styling.global.css` file and import it in your app:
 
 ```js
-import './firebaseui-overrides.global.css'; // Import globally.
+import './firebaseui-styling.global.css'; // Import globally. Not with CSS modules.
 ```
 
-> Note: If you are using the "With ExtractTextPlugin and CSS modules" Webpack build rule above, the `.global.css` suffixe will make sure the CSS file is imported globally and not ran through modules support.
+> Note: If you are using the [With ExtractTextPlugin and CSS modules](#with-extracttextplugin-and-css-modules) Webpack build rule above, the `.global.css` suffix will make sure the CSS file is imported globally and not ran through modules support.
 
 If you would like to see an example of styling, have a look at the [example app](./example).
 
-
-## Using multiple instances
-
-In the case where you would need to load multiple instances of `FirebaseAuth` at the same time you need to set them up with a different ID using the `elementId` attribute. For instance:
-
-```js
-<StyledFirebaseAuth elementId="auth_1" uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
-<StyledFirebaseAuth elementId="auth_2" uiConfig={this.otherUiConfig} firebaseAuth={firebase.auth()}/>
-```
+Alternatively you can include the styling in a `<style>` tag in your application's markup.
 
 
 ## Contributing
