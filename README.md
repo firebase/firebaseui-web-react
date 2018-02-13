@@ -278,9 +278,9 @@ Alternatively you can include the styling in a `<style>` tag in your application
 
 ## Server-Side Rendering (SSR)
 
-FirebaseUI React cannot be rendered on the serverside becasue the underlying, wrapped library ([FirebaseUI](https://npmjs.com/package/firebaseui) does not work server-side.
+FirebaseUI React cannot be rendered server-side because the underlying, wrapped library ([FirebaseUI](https://npmjs.com/package/firebaseui)) does not work server-side.
 
-You may still import and include the library in an app that uses SSR: there should be no errors but no elements will be rendered.
+You can still import and include this library in an app that uses SSR: there should be no errors but no elements will be rendered.
 
 
 ## Contributing
