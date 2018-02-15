@@ -33,8 +33,8 @@ In your app:
 There are two similar components that allow you to add FirebaseUI auth to your application: `FirebaseAuth` and `StyledFirebaseAuth`.
  - `FirebaseAuth` has a reference to the FirebaseUI CSS file (it `requires` the CSS).
  - `StyledFirebaseAuth` is bundled with the CSS directly.
- 
-For simplicity you should use `StyledFirebaseAuth` and for potential better performances and build sizes you can use `FirebaseAuth`. `FirebaseAuth` is meant to be used with a CSS/style loader as part of yor webpack built configuration. See the [Packing your app](#packing-your-app) section.
+
+For simplicity you should use `StyledFirebaseAuth` and for potential better performances and build sizes you can use `FirebaseAuth`. `FirebaseAuth` is meant to be used with a CSS/style loader as part of your webpack built configuration. See the [Packing your app](#packing-your-app) section.
 
 
 ### Using `StyledFirebaseAuth` with a redirect
@@ -100,12 +100,12 @@ const config = {
 firebase.initializeApp(config);
 
 class SignInScreen extends React.Component {
-  
+
   // The component's Local state.
   state = {
     signedIn: false // Local signed-in state.
   };
-  
+
   // Configure FirebaseUI.
   uiConfig = {
     // Popup signin flow rather than redirect flow.
@@ -127,7 +127,7 @@ class SignInScreen extends React.Component {
         (user) => this.setState({signedIn: !!user})
     );
   }
-  
+
   render() {
     if (!this.state.signedIn) {
       return (
@@ -261,8 +261,8 @@ If you are using CSS modules in your app you need to handle the CSS files in `/n
 }
 ```
 
-## Styling 
- 
+## Styling
+
 To change the styling of the `FirebaseAuth` or the `StyledFirebaseAuth` widget you can override some of its CSS. To do this, import a CSS that will be included in your packed application. For instance create a `firebaseui-styling.global.css` file and import it in your app:
 
 ```js
