@@ -125,7 +125,7 @@ class SignInScreen extends React.Component {
   };
 
   // Listen to the Firebase Auth state and set the local state.
-  componentWillMount() {
+  componentDidMount() {
     firebase.auth().onAuthStateChanged(
         (user) => this.setState({signedIn: !!user})
     );
