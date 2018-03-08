@@ -1,3 +1,6 @@
+[![npm version](https://badge.fury.io/js/react-firebaseui.svg)](https://badge.fury.io/js/react-firebaseui)
+[![GitHub license](https://img.shields.io/github/license/firebase/firebaseui-web-react.svg)](https://github.com/Firebase/firebaseui-web-react/blob/master/LICENSE)
+
 # FirebaseUI React Components
 
 FirebaseUI React Components provides React Wrappers on top of the [Firebase UI Web library](https://github.com/firebase/firebaseui-web/) and notably Firebase UI Auth.
@@ -33,8 +36,8 @@ In your app:
 There are two similar components that allow you to add FirebaseUI auth to your application: `FirebaseAuth` and `StyledFirebaseAuth`.
  - `FirebaseAuth` has a reference to the FirebaseUI CSS file (it `requires` the CSS).
  - `StyledFirebaseAuth` is bundled with the CSS directly.
- 
-For simplicity you should use `StyledFirebaseAuth` and for potential better performances and build sizes you can use `FirebaseAuth`. `FirebaseAuth` is meant to be used with a CSS/style loader as part of yor webpack built configuration. See the [Packing your app](#packing-your-app) section.
+
+For simplicity you should use `StyledFirebaseAuth` and for potential better performances and build sizes you can use `FirebaseAuth`. `FirebaseAuth` is meant to be used with a CSS/style loader as part of your webpack built configuration. See the [Packing your app](#packing-your-app) section.
 
 
 ### Using `StyledFirebaseAuth` with a redirect
@@ -100,12 +103,12 @@ const config = {
 firebase.initializeApp(config);
 
 class SignInScreen extends React.Component {
-  
+
   // The component's Local state.
   state = {
     signedIn: false // Local signed-in state.
   };
-  
+
   // Configure FirebaseUI.
   uiConfig = {
     // Popup signin flow rather than redirect flow.
@@ -122,12 +125,12 @@ class SignInScreen extends React.Component {
   };
 
   // Listen to the Firebase Auth state and set the local state.
-  componentWillMount() {
+  componentDidMount() {
     firebase.auth().onAuthStateChanged(
         (user) => this.setState({signedIn: !!user})
     );
   }
-  
+
   render() {
     if (!this.state.signedIn) {
       return (
@@ -261,8 +264,8 @@ If you are using CSS modules in your app you need to handle the CSS files in `/n
 }
 ```
 
-## Styling 
- 
+## Styling
+
 To change the styling of the `FirebaseAuth` or the `StyledFirebaseAuth` widget you can override some of its CSS. To do this, import a CSS that will be included in your packed application. For instance create a `firebaseui-styling.global.css` file and import it in your app:
 
 ```js
@@ -278,9 +281,9 @@ Alternatively you can include the styling in a `<style>` tag in your application
 
 ## Server-Side Rendering (SSR)
 
-FirebaseUI React cannot be rendered on the serverside becasue the underlying, wrapped library ([FirebaseUI](https://npmjs.com/package/firebaseui) does not work server-side.
+FirebaseUI React cannot be rendered server-side because the underlying, wrapped library ([FirebaseUI](https://npmjs.com/package/firebaseui)) does not work server-side.
 
-You may still import and include the library in an app that uses SSR: there should be no errors but no elements will be rendered.
+You can still import and include this library in an app that uses SSR: there should be no errors but no elements will be rendered.
 
 
 ## Contributing

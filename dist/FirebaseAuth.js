@@ -27,6 +27,7 @@ var FirebaseAuth = function (_React$Component) {
     _this.uiConfig = props.uiConfig;
     _this.firebaseAuth = props.firebaseAuth;
     _this.className = props.className;
+    _this.uiCallback = props.uiCallback;
     return _this;
   }
 
