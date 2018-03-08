@@ -36,6 +36,7 @@ export default class FirebaseAuth extends React.Component {
     this.uiConfig = props.uiConfig;
     this.firebaseAuth = props.firebaseAuth;
     this.className = props.className;
+    this.uiCallback = props.uiCallback;
   }
 
   /**
