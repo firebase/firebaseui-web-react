@@ -56,9 +56,16 @@ class App extends React.Component {
    * @inheritDoc
    */
   componentDidMount() {
-    firebaseApp.auth().onAuthStateChanged((user) => {
-      this.setState({signedIn: !!user});
-    });
+    this.unregisterAuthObserver = firebaseApp.auth().onAuthStateChanged(
+        (user) => this.setState({signedIn: !!user}
+    );
+  }
+
+  /**
+   * @inheritDoc
+   */
+  componentWillUnmount() {
+    this.unregisterAuthObserver();
   }
 
   /**
