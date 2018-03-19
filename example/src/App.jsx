@@ -49,7 +49,7 @@ class App extends React.Component {
   };
 
   state = {
-    signedIn: false,
+    isSignedIn: false,
   };
 
   /**
@@ -57,7 +57,7 @@ class App extends React.Component {
    */
   componentDidMount() {
     this.unregisterAuthObserver = firebaseApp.auth().onAuthStateChanged(
-        (user) => this.setState({signedIn: !!user}
+        (user) => this.setState({isSignedIn: !!user}
     );
   }
 
@@ -78,13 +78,13 @@ class App extends React.Component {
           <i className={styles.logoIcon + ' material-icons'}>photo</i> My App
         </div>
         <div className={styles.caption}>This is a cool demo app</div>
-        {!this.state.signedIn &&
+        {!this.state.isSignedIn &&
           <div>
             <StyledFirebaseAuth className={styles.firebaseUi} uiConfig={this.uiConfig}
                                 firebaseAuth={firebaseApp.auth()}/>
           </div>
         }
-        {this.state.signedIn &&
+        {this.state.isSignedIn &&
           <div className={styles.signedIn}>
             Hello {firebaseApp.auth().currentUser.displayName}. You are now signed In!
             <a className={styles.button} onClick={() => firebaseApp.auth().signOut()}>Sign-out</a>
