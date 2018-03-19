@@ -106,7 +106,7 @@ class SignInScreen extends React.Component {
 
   // The component's Local state.
   state = {
-    iSignedIn: false // Local signed-in state.
+    isSignedIn: false // Local signed-in state.
   };
 
   // Configure FirebaseUI.
@@ -137,7 +137,7 @@ class SignInScreen extends React.Component {
   }
 
   render() {
-    if (!this.state.signedIn) {
+    if (!this.state.isSignedIn) {
       return (
         <div>
           <h1>My App</h1>
