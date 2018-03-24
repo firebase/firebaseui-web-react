@@ -57,7 +57,7 @@ class App extends React.Component {
    */
   componentDidMount() {
     this.unregisterAuthObserver = firebaseApp.auth().onAuthStateChanged(
-        (user) => this.setState({isSignedIn: !!user}
+        (user) => this.setState({isSignedIn: !!user})
     );
   }
 
