@@ -63,6 +63,15 @@ export default class FirebaseAuth extends React.Component {
         this.firebaseUiWidget.reset();
       }
 
+      // We track the auth state to reset firebaseUi if the user signs out.
+      this.userSignedIn = false;
+      this.unregisterAuthObserver = this.firebaseAuth.onAuthStateChanged((user) => {
+        if (!user && this.userSignedIn) {
+          this.firebaseUiWidget.reset();
+        }
+        this.userSignedIn = !!user;
+      });
+
       // Trigger the callback if any was set.
       if (this.uiCallback) {
         this.uiCallback(this.firebaseUiWidget);
