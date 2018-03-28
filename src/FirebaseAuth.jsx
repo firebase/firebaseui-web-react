@@ -20,6 +20,9 @@ import React from 'react';
 // Global ID for the element.
 const ELEMENT_ID = 'firebaseui_container';
 
+// Promise that resolves unless the FirebaseUI instance is currently being deleted.
+let firebaseUiDeletion = Promise.resolve();
+
 /**
  * React Component wrapper for the FirebaseUI Auth widget.
  */
@@ -46,24 +49,36 @@ export default class FirebaseAuth extends React.Component {
     // Import the css only on the client.
     require('firebaseui/dist/firebaseui.css');
 
-    // Firebase UI only works on the Client. So we're loading in `componentDidMount`.
+    // Firebase UI only works on the Client. So we're loading the package in `componentDidMount`
+    // So that this works when doing server-side rendering.
     const firebaseui = require('firebaseui');
-    this.firebaseUiWidget = firebaseui.auth.AuthUI.getInstance()
-                          || new firebaseui.auth.AuthUI(this.firebaseAuth);
-    if (this.uiConfig.signInFlow === 'popup') {
-      this.firebaseUiWidget.reset();
-    }
-    if (this.uiCallback) {
-      this.uiCallback(this.firebaseUiWidget);
-    }
-    this.firebaseUiWidget.start('#' + ELEMENT_ID, this.uiConfig);
+
+    // Wait in case the firebase UI instance is being deleted.
+    // This can happen if you unmount/remount the element quickly.
+    firebaseUiDeletion.then(() => {
+      // Get or Create a firebaseUI instance.
+      this.firebaseUiWidget = firebaseui.auth.AuthUI.getInstance()
+        || new firebaseui.auth.AuthUI(this.firebaseAuth);
+      if (this.uiConfig.signInFlow === 'popup') {
+        this.firebaseUiWidget.reset();
+      }
+
+      // Trigger the callback if any was set.
+      if (this.uiCallback) {
+        this.uiCallback(this.firebaseUiWidget);
+      }
+
+      // Render the firebaseUi Widget.
+      this.firebaseUiWidget.start('#' + ELEMENT_ID, this.uiConfig);
+    });
   }
 
   /**
    * @inheritDoc
    */
   componentWillUnmount() {
-    this.firebaseUiWidget.reset();
+    this.unregisterAuthObserver();
+    firebaseUiDeletion = this.firebaseUiWidget.delete();
   }
 
   /**
