@@ -49,7 +49,7 @@ class App extends React.Component {
   };
 
   state = {
-    isSignedIn: false,
+    isSignedIn: undefined,
   };
 
   /**
@@ -78,7 +78,7 @@ class App extends React.Component {
           <i className={styles.logoIcon + ' material-icons'}>photo</i> My App
         </div>
         <div className={styles.caption}>This is a cool demo app</div>
-        {!this.state.isSignedIn &&
+        {this.state.isSignedIn !== undefined && !this.state.isSignedIn &&
           <div>
             <StyledFirebaseAuth className={styles.firebaseUi} uiConfig={this.uiConfig}
                                 firebaseAuth={firebaseApp.auth()}/>
