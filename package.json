@@ -25,10 +25,10 @@
   },
   "license": "Apache-2.0",
   "peerDependencies": {
-    "firebase": "^4"
+    "firebase": "^4.12.0"
   },
   "dependencies": {
-    "firebaseui": "^2.4.0",
+    "firebaseui": "^2.7.0",
     "react": "^15"
   },
   "devDependencies": {
