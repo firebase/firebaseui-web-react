@@ -16,6 +16,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var ELEMENT_ID = 'firebaseui_container';
 
+var firebaseUiDeletion = Promise.resolve();
+
 var FirebaseAuth = function (_React$Component) {
   _inherits(FirebaseAuth, _React$Component);
 
@@ -32,21 +34,37 @@ var FirebaseAuth = function (_React$Component) {
   }
 
   FirebaseAuth.prototype.componentDidMount = function componentDidMount() {
+    var _this2 = this;
+
     require('firebaseui/dist/firebaseui.css');
 
     var firebaseui = require('firebaseui');
-    this.firebaseUiWidget = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(this.firebaseAuth);
-    if (this.uiConfig.signInFlow === 'popup') {
-      this.firebaseUiWidget.reset();
-    }
-    if (this.uiCallback) {
-      this.uiCallback(this.firebaseUiWidget);
-    }
-    this.firebaseUiWidget.start('#' + ELEMENT_ID, this.uiConfig);
+
+    firebaseUiDeletion.then(function () {
+      _this2.firebaseUiWidget = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(_this2.firebaseAuth);
+      if (_this2.uiConfig.signInFlow === 'popup') {
+        _this2.firebaseUiWidget.reset();
+      }
+
+      _this2.userSignedIn = false;
+      _this2.unregisterAuthObserver = _this2.firebaseAuth.onAuthStateChanged(function (user) {
+        if (!user && _this2.userSignedIn) {
+          _this2.firebaseUiWidget.reset();
+        }
+        _this2.userSignedIn = !!user;
+      });
+
+      if (_this2.uiCallback) {
+        _this2.uiCallback(_this2.firebaseUiWidget);
+      }
+
+      _this2.firebaseUiWidget.start('#' + ELEMENT_ID, _this2.uiConfig);
+    });
   };
 
   FirebaseAuth.prototype.componentWillUnmount = function componentWillUnmount() {
-    this.firebaseUiWidget.reset();
+    this.unregisterAuthObserver();
+    firebaseUiDeletion = this.firebaseUiWidget.delete();
   };
 
   FirebaseAuth.prototype.render = function render() {

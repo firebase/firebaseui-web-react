@@ -5,14 +5,13 @@
     "serve": "firebase serve"
   },
   "dependencies": {
-    "ajv": "^6.0.0",
-    "firebase": "^4.8.0",
-    "firebaseui": "^2.6.0",
+    "firebase": "^4.12.0",
     "react": "15.6.1",
     "react-dom": "15.6.1",
-    "react-firebaseui": "^1.1.9"
+    "react-firebaseui": "^1.2.3"
   },
   "devDependencies": {
+    "ajv": "^6.0.0",
     "babel-cli": "6.24.1",
     "babel-core": "6.24.1",
     "babel-loader": "7.1.1",
