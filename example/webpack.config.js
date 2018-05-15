@@ -59,10 +59,10 @@ const config = {
                   autoprefixer: true,
                   minimize: true,
                   localIdentName: '[name]__[local]___[hash:base64:5]',
-                }
-              }
-            ]
-          })
+                },
+              },
+            ],
+          }),
       },
       {
         test: /\.css/,
@@ -77,13 +77,13 @@ const config = {
                   importLoaders: 1,
                   modules: false,
                   minimize: true,
-                }
-              }
-            ]
-          })
-      }
-    ]
-  }
+                },
+              },
+            ],
+          }),
+      },
+    ],
+  },
 };
 
 console.log('Packing for', process.env.NODE_ENV || 'development');

@@ -26,6 +26,7 @@ This is a sample app showing a usage of the react-firebaseui package in a react 
 1. Try out the app by opening [http://localhost:5000](http://localhost:5000) in your browser.
 
 
+
 ## Contributing
 
 We'd love that you contribute to the project. Before doing so please read our [Contributor guide](../CONTRIBUTING.md).

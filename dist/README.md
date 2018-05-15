@@ -120,7 +120,7 @@ class SignInScreen extends React.Component {
     ],
     callbacks: {
       // Avoid redirects after sign-in.
-      signInSuccess: () => false
+      signInSuccessWithAuthResult: () => false
     }
   };
 
