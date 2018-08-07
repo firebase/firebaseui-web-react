@@ -9,3 +9,4 @@ example/public/bundle.css
 example/public/bundle.css.map
 example/public/bundle.js
 example/public/bundle.js.map
+dist/node_modules
