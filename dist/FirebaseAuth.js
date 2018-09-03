@@ -30,6 +30,7 @@ var FirebaseAuth = function (_React$Component) {
     _this.firebaseAuth = props.firebaseAuth;
     _this.className = props.className;
     _this.uiCallback = props.uiCallback;
+    _this.unregisterAuthObserver = function () {};
     return _this;
   }
 
@@ -40,7 +41,7 @@ var FirebaseAuth = function (_React$Component) {
 
     var firebaseui = require('firebaseui');
 
-    firebaseUiDeletion.then(function () {
+    return firebaseUiDeletion.then(function () {
       _this2.firebaseUiWidget = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(_this2.firebaseAuth);
       if (_this2.uiConfig.signInFlow === 'popup') {
         _this2.firebaseUiWidget.reset();
@@ -63,8 +64,12 @@ var FirebaseAuth = function (_React$Component) {
   };
 
   FirebaseAuth.prototype.componentWillUnmount = function componentWillUnmount() {
-    this.unregisterAuthObserver();
-    firebaseUiDeletion = this.firebaseUiWidget.delete();
+    var _this3 = this;
+
+    return firebaseUiDeletion.then(function () {
+      _this3.unregisterAuthObserver();
+      firebaseUiDeletion = _this3.firebaseUiWidget.delete();
+    });
   };
 
   FirebaseAuth.prototype.render = function render() {
