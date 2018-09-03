@@ -40,6 +40,7 @@ export default class FirebaseAuth extends React.Component {
     this.firebaseAuth = props.firebaseAuth;
     this.className = props.className;
     this.uiCallback = props.uiCallback;
+    this.unregisterAuthObserver = () => {};
   }
 
   /**
@@ -55,10 +56,10 @@ export default class FirebaseAuth extends React.Component {
 
     // Wait in case the firebase UI instance is being deleted.
     // This can happen if you unmount/remount the element quickly.
-    firebaseUiDeletion.then(() => {
+    return firebaseUiDeletion.then(() => {
       // Get or Create a firebaseUI instance.
       this.firebaseUiWidget = firebaseui.auth.AuthUI.getInstance()
-        || new firebaseui.auth.AuthUI(this.firebaseAuth);
+           || new firebaseui.auth.AuthUI(this.firebaseAuth);
       if (this.uiConfig.signInFlow === 'popup') {
         this.firebaseUiWidget.reset();
       }
@@ -86,8 +87,10 @@ export default class FirebaseAuth extends React.Component {
    * @inheritDoc
    */
   componentWillUnmount() {
-    this.unregisterAuthObserver();
-    firebaseUiDeletion = this.firebaseUiWidget.delete();
+    return firebaseUiDeletion.then(() => {
+      this.unregisterAuthObserver();
+      firebaseUiDeletion = this.firebaseUiWidget.delete();
+    });
   }
 
   /**
