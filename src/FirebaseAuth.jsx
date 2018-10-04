@@ -107,7 +107,7 @@ export default class FirebaseAuth extends React.Component {
     // started. This allows access to certain configuration options such as
     // disableAutoSignIn().
     uiCallback?: Function,
-    className: String
+    className?: String,
   };
 
   /**
