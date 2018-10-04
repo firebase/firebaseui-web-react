@@ -87,10 +87,11 @@ export default class FirebaseAuth extends React.Component {
    * @inheritDoc
    */
   componentWillUnmount() {
-    return firebaseUiDeletion.then(() => {
+    firebaseUiDeletion = firebaseUiDeletion.then(() => {
       this.unregisterAuthObserver();
-      firebaseUiDeletion = this.firebaseUiWidget.delete();
+      return this.firebaseUiWidget.delete();
     });
+    return firebaseUiDeletion;
   }
 
   /**
