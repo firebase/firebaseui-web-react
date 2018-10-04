@@ -1,3 +1,3 @@
-import { StyledFirebaseAuth } from "./"
+import { StyledFirebaseAuth } from './';
 
 export default StyledFirebaseAuth

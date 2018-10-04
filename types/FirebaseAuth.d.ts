@@ -1,3 +1,3 @@
-import { FirebaseAuth } from "./"
+import { FirebaseAuth } from './';
 
 export default FirebaseAuth

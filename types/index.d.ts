@@ -1,5 +1,5 @@
-import * as firebaseui from "firebaseui";
-import * as React from "react";
+import * as firebaseui from 'firebaseui';
+import * as React from 'react';
 
 export interface Props {
   uiConfig: firebaseui.auth.Config;
