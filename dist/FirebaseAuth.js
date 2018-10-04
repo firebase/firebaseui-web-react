@@ -66,10 +66,11 @@ var FirebaseAuth = function (_React$Component) {
   FirebaseAuth.prototype.componentWillUnmount = function componentWillUnmount() {
     var _this3 = this;
 
-    return firebaseUiDeletion.then(function () {
+    firebaseUiDeletion = firebaseUiDeletion.then(function () {
       _this3.unregisterAuthObserver();
-      firebaseUiDeletion = _this3.firebaseUiWidget.delete();
+      return _this3.firebaseUiWidget.delete();
     });
+    return firebaseUiDeletion;
   };
 
   FirebaseAuth.prototype.render = function render() {
