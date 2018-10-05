@@ -18,8 +18,9 @@
   ],
   "main": "index.js",
   "scripts": {
-    "build": "webpack -p; babel src --out-dir dist -s; cp ./types/* README.md LICENSE package.json dist; cd dist && npm install --only=production && cd -",
-    "pub": "npm run build && npm publish dist"
+    "clean": "rm -rf ./dist",
+    "build": "webpack -p && babel src --out-dir dist -s && cp ./types/* README.md LICENSE package.json dist && cd dist && npm install --only=production && cd -",
+    "pub": "npm run clean && npm run build && npm publish dist"
   },
   "author": "Google",
   "repository": {
