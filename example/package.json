@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "npm run createfirebaseconf; NODE_ENV=production webpack -p;",
+    "clean": "rm -rf ./public/bundle.* ./src/firebase-config.json ./node_modules",
+    "build": "npm run clean && npm run createfirebaseconf; NODE_ENV=production webpack -p;",
     "createfirebaseconf": "firebase setup:web --json > ./src/firebase-config.json",
     "serve": "firebase serve"
   },
