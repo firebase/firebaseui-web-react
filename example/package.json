@@ -8,7 +8,7 @@
   "dependencies": {
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-firebaseui": "^3.1.0",
+    "react-firebaseui": "^3.1.2",
     "firebase": "5.3.1"
   },
   "devDependencies": {
