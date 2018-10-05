@@ -3,15 +3,18 @@
   "version": "3.1.0",
   "description": "React wrapper for firebaseui: Javascript library for customizable UI on top of Firebase SDK",
   "files": [
+    "FirebaseAuth.d.ts",
     "FirebaseAuth.js",
     "FirebaseAuth.js.map",
-    "StyledFirebaseAuth.js",
-    "StyledFirebaseAuth.js.map",
+    "index.d.ts",
     "index.js",
     "index.js.map",
     "LICENSE",
+    "package.json",
     "README.md",
-    "package.json"
+    "StyledFirebaseAuth.d.ts",
+    "StyledFirebaseAuth.js",
+    "StyledFirebaseAuth.js.map"
   ],
   "main": "index.js",
   "scripts": {
