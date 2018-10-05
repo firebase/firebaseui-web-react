@@ -5,10 +5,13 @@
   "files": [
     "FirebaseAuth.js",
     "FirebaseAuth.js.map",
+    "FirebaseAuth.d.ts",
     "StyledFirebaseAuth.js",
     "StyledFirebaseAuth.js.map",
+    "StyledFirebaseAuth.d.ts",
     "index.js",
     "index.js.map",
+    "index.d.ts",
     "LICENSE",
     "README.md",
     "package.json"
