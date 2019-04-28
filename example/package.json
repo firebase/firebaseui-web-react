@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "clean": "rm -rf ./public/bundle.* ./src/firebase-config.json ./node_modules",
+    "clean": "rm -rf ./public/bundle.* ./src/firebase-config.json",
     "build": "npm run clean && npm run createfirebaseconf; NODE_ENV=production webpack -p;",
     "createfirebaseconf": "firebase setup:web --json > ./src/firebase-config.json",
     "serve": "firebase serve"
@@ -9,7 +9,7 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-firebaseui": "^3.1.2",
-    "firebase": "5.3.1"
+    "firebase": "5.10.1"
   },
   "devDependencies": {
     "ajv": "^6.5.0",
