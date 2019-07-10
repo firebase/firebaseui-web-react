@@ -23,7 +23,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
-// Styles
+// Styles.
 import styles from './app.css'; // This uses CSS modules.
 import './firebaseui-styling.global.css'; // Import globally.
 
