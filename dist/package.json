@@ -30,7 +30,7 @@
   "license": "Apache-2.0",
   "peerDependencies": {
     "react": ">=15 <17",
-    "firebase": "^6.3.4"
+    "firebase": ">=6.3.4 <8"
   },
   "dependencies": {
     "firebaseui": "^4.1.0"
