@@ -25,10 +25,11 @@ npm install --save firebase
 ```
 
 In your app:
-  1. Import the `FirebaseAuth` or the `StyledFirebaseAuth` component from `react-firebaseui` and import `firebase`.
-  2. Configure Firebase as described in [the Firebase Docs](https://firebase.google.com/docs/web/setup).
-  3. Write a Firebase UI configuration as described in [firebase/firebaseui-web](https://github.com/firebase/firebaseui-web#configuration).
-  4. Use the `FirebaseAuth` component in your template passing it the **Firebase UI configuration** and a **Firebase Auth instance**.
+  1. import the css `import 'firebaseui/dist/firebaseui.css'`
+  2. Import the `FirebaseAuth` or the `StyledFirebaseAuth` component from `react-firebaseui` and import `firebase`.
+  3. Configure Firebase as described in [the Firebase Docs](https://firebase.google.com/docs/web/setup).
+  4. Write a Firebase UI configuration as described in [firebase/firebaseui-web](https://github.com/firebase/firebaseui-web#configuration).
+  5. Use the `FirebaseAuth` component in your template passing it the **Firebase UI configuration** and a **Firebase Auth instance**.
 
 
 ### `FirebaseAuth` vs. `StyledFirebaseAuth`
@@ -130,7 +131,7 @@ class SignInScreen extends React.Component {
         (user) => this.setState({isSignedIn: !!user})
     );
   }
-  
+
   // Make sure we un-register Firebase observers when the component unmounts.
   componentWillUnmount() {
     this.unregisterAuthObserver();
