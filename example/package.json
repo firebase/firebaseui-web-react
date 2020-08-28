@@ -1,15 +1,15 @@
 {
   "scripts": {
     "clean": "rm -rf ./public/bundle.* ./src/firebase-config.json",
-    "build": "npm run clean && npm run createfirebaseconf; NODE_ENV=production webpack -p;",
-    "createfirebaseconf": "firebase setup:web --json > ./src/firebase-config.json",
+    "build": "npm run clean && npm run createfirebaseconf && webpack --mode production",
+    "createfirebaseconf": "firebase apps:sdkconfig WEB | sed 's#firebase.initializeApp(##' | sed 's#});#}#' | sed -e 's#^//\\s.*##'' > src/firebase-config.json",
     "serve": "firebase serve"
   },
   "dependencies": {
-    "firebase": "^6.3.4",
+    "firebase": "^7.19.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-firebaseui": "4.0.0"
+    "react-firebaseui": "^4.1.0"
   },
   "devDependencies": {
     "ajv": "^6.5.0",
@@ -22,7 +22,7 @@
     "babel-register": "^6.26.0",
     "css-loader": "^0.28.11",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "firebase-tools": "^7.2.2",
+    "firebase-tools": "^8.9.2",
     "style-loader": "^0.21.0",
     "webpack": "^4.8.3",
     "webpack-cli": "^3.0.0"
