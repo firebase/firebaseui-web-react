@@ -10,8 +10,6 @@ FirebaseUI Auth provides a drop-in auth solution that handles the UI flows for s
 
 ## Installation and Usage
 
-> For an example on how to use the FirebaseAuth react component have a look at the [example](./example) folder.
-
 Install the npm package in your React app:
 
 ```bash
