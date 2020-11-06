@@ -10,6 +10,8 @@ FirebaseUI Auth provides a drop-in auth solution that handles the UI flows for s
 
 ## Installation and Usage
 
+> For an example on how to use the FirebaseAuth react component have a look at the [example](./example) folder.
+
 Install the npm package in your React app:
 
 ```bash
@@ -82,9 +84,9 @@ class SignInScreen extends React.Component {
 }
 ```
 
-### Using `FirebaseAuth` with local state.
+### Using `StyledFirebaseAuth` with local state.
 
-Below is an example on how to use `FirebaseAuth` with a state change upon sign-in:
+Below is an example on how to use `StyledFirebaseAuth` with a state change upon sign-in:
 
 ```js
 // Import FirebaseAuth and firebase.
