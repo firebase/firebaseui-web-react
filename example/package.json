@@ -2,7 +2,7 @@
   "scripts": {
     "clean": "rm -rf ./public/bundle.* ./src/firebase-config.json",
     "build": "npm run clean && npm run createfirebaseconf; NODE_ENV=production webpack -p;",
-    "createfirebaseconf": "firebase setup:web --json > ./src/firebase-config.json",
+    "createfirebaseconf": "firebase apps:sdkconfig web --json > ./src/firebase-config.json",
     "serve": "firebase serve"
   },
   "dependencies": {
