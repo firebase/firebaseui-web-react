@@ -84,9 +84,9 @@ class SignInScreen extends React.Component {
 }
 ```
 
-### Using `FirebaseAuth` with local state.
+### Using `StyledFirebaseAuth` with local state.
 
-Below is an example on how to use `FirebaseAuth` with a state change upon sign-in:
+Below is an example on how to use `StyledFirebaseAuth` with a state change upon sign-in:
 
 ```js
 // Import FirebaseAuth and firebase.
