@@ -67,30 +67,30 @@ const uiConfig = {
   // We will display Google and Facebook as auth providers.
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID
-  ]
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+  ],
 };
 
-class SignInScreen extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>My App</h1>
-        <p>Please sign-in:</p>
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
-      </div>
-    );
-  }
+function SignInScreen() {
+  return (
+    <div>
+      <h1>My App</h1>
+      <p>Please sign-in:</p>
+      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+    </div>
+  );
 }
+
+export default SignInScreen
 ```
 
-### Using `FirebaseAuth` with local state.
+### Using `StyledFirebaseAuth` with local state.
 
-Below is an example on how to use `FirebaseAuth` with a state change upon sign-in:
+Below is an example on how to use `StyledFirebaseAuth` with a state change upon sign-in:
 
 ```js
 // Import FirebaseAuth and firebase.
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 
@@ -102,59 +102,51 @@ const config = {
 };
 firebase.initializeApp(config);
 
-class SignInScreen extends React.Component {
+// Configure FirebaseUI.
+const uiConfig = {
+  // Popup signin flow rather than redirect flow.
+  signInFlow: 'popup',
+  // We will display Google and Facebook as auth providers.
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID
+  ],
+  callbacks: {
+    // Avoid redirects after sign-in.
+    signInSuccessWithAuthResult: () => false,
+  },
+};
 
-  // The component's Local state.
-  state = {
-    isSignedIn: false // Local signed-in state.
-  };
-
-  // Configure FirebaseUI.
-  uiConfig = {
-    // Popup signin flow rather than redirect flow.
-    signInFlow: 'popup',
-    // We will display Google and Facebook as auth providers.
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID
-    ],
-    callbacks: {
-      // Avoid redirects after sign-in.
-      signInSuccessWithAuthResult: () => false
-    }
-  };
+function SignInScreen() {
+  const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
 
   // Listen to the Firebase Auth state and set the local state.
-  componentDidMount() {
-    this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
-        (user) => this.setState({isSignedIn: !!user})
-    );
-  }
-  
-  // Make sure we un-register Firebase observers when the component unmounts.
-  componentWillUnmount() {
-    this.unregisterAuthObserver();
-  }
+  useEffect(() => {
+    const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
+      setIsSignedIn(!!user);
+    });
+    return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
+  }, []);
 
-  render() {
-    if (!this.state.isSignedIn) {
-      return (
-        <div>
-          <h1>My App</h1>
-          <p>Please sign-in:</p>
-          <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
-        </div>
-      );
-    }
+  if (!isSignedIn) {
     return (
       <div>
         <h1>My App</h1>
-        <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
-        <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
+        <p>Please sign-in:</p>
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
       </div>
     );
   }
+  return (
+    <div>
+      <h1>My App</h1>
+      <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
+      <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
+    </div>
+  );
 }
+
+export default SignInScreen;
 ```
 
 ### Accessing the FirebaseUI instance
@@ -165,15 +157,13 @@ To do this you can pass a `uiCallback` callback function that wil be passed the 
 ```js
 // ...
 
-render() {
-  return (
-    <div>
-      <h1>My App</h1>
-      <p>Please sign-in:</p>
-      <StyledFirebaseAuth uiCallback={ui => ui.disableAutoSignIn()} uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
-    </div>
-  );
-}
+return (
+  <div>
+    <h1>My App</h1>
+    <p>Please sign-in:</p>
+    <StyledFirebaseAuth uiCallback={ui => ui.disableAutoSignIn()} uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+  </div>
+);
 ```
 
 

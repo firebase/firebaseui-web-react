@@ -1,6 +1,6 @@
 {
   "name": "react-firebaseui",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "React wrapper for firebaseui: Javascript library for customizable UI on top of Firebase SDK",
   "files": [
     "FirebaseAuth.d.ts",
@@ -29,18 +29,18 @@
   },
   "license": "Apache-2.0",
   "peerDependencies": {
-    "react": ">=15 <17",
-    "firebase": ">=6.3.4 <8"
+    "react": ">=15 <=17",
+    "firebase": ">=7 <=8"
   },
   "dependencies": {
-    "firebaseui": "^4.1.0"
+    "firebaseui": "^4.7.1"
   },
   "devDependencies": {
-    "@types/react": "^16.3.2",
+    "@types/react": "^17.0.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.3",
-    "babel-loader": "^7.1.4",
+    "babel-eslint": "^8.2.6",
+    "babel-loader": "^7.1.5",
     "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-remove-comments": "^2.0.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
@@ -56,16 +56,16 @@
     "eslint-config-standard": "^11.0.0",
     "eslint-config-standard-react": "^6.0.0",
     "eslint-plugin-flow": "^2.29.1",
-    "eslint-plugin-flowtype": "^2.46.3",
+    "eslint-plugin-flowtype": "^2.50.3",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-standard": "^3.1.0",
-    "react": "^16.3.2",
+    "react": "^17.0.1",
     "style-loader": "^0.21.0",
-    "webpack": "^4.8.3",
-    "webpack-cli": "^3.0.0"
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
   }
 }
