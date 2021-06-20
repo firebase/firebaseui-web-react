@@ -17,6 +17,7 @@
     "StyledFirebaseAuth.js.map"
   ],
   "main": "index.js",
+  "types": "types",
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "webpack -p && babel src --out-dir dist -s && cp ./types/* README.md LICENSE package.json dist && cd dist && npm install --only=production && cd -",
