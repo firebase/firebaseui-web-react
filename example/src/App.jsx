@@ -28,7 +28,7 @@ import styles from './app.css'; // This uses CSS modules.
 import './firebaseui-styling.global.css'; // Import globally.
 
 // Get the Firebase config from the auto generated file.
-const firebaseConfig = require('./firebase-config.json').result;
+const firebaseConfig = require('./firebase-config.json').result.sdkConfig;
 
 // Instantiate a Firebase app.
 const firebaseApp = firebase.initializeApp(firebaseConfig);
