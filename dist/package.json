@@ -1,6 +1,6 @@
 {
   "name": "react-firebaseui",
-  "version": "5.0.2",
+  "version": "0.600.0",
   "description": "React wrapper for firebaseui: Javascript library for customizable UI on top of Firebase SDK",
   "files": [
     "FirebaseAuth.d.ts",
@@ -16,7 +16,7 @@
     "StyledFirebaseAuth.js",
     "StyledFirebaseAuth.js.map"
   ],
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "clean": "rm -rf ./dist",
     "build": "webpack -p && babel src --out-dir dist -s && cp ./types/* README.md LICENSE package.json dist && cd dist && npm install --only=production && cd -",
@@ -30,10 +30,10 @@
   "license": "Apache-2.0",
   "peerDependencies": {
     "react": ">=15 <=17",
-    "firebase": "^8.2.4"
+    "firebase": "^9.0.0"
   },
   "dependencies": {
-    "firebaseui": "^4.8.0"
+    "firebaseui": "^0.600.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",

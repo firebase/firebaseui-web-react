@@ -48,7 +48,8 @@ Below is an example on how to use `FirebaseAuth` with a redirect upon sign-in:
 // Import FirebaseAuth and firebase.
 import React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import firebase from 'firebase';
+import { initializeApp } from 'firebase/app';
+import { getAuth, EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 // Configure Firebase.
 const config = {
@@ -56,7 +57,7 @@ const config = {
   authDomain: 'myproject-1234.firebaseapp.com',
   // ...
 };
-firebase.initializeApp(config);
+const firebaseApp = initializeApp(firebaseConfig);
 
 // Configure FirebaseUI.
 const uiConfig = {
@@ -66,17 +67,19 @@ const uiConfig = {
   signInSuccessUrl: '/signedIn',
   // We will display Google and Facebook as auth providers.
   signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    GoogleAuthProvider.PROVIDER_ID,
+    FacebookAuthProvider.PROVIDER_ID,
   ],
 };
 
 function SignInScreen() {
+  const auth = getAuth(firebaseApp)
+
   return (
     <div>
       <h1>My App</h1>
       <p>Please sign-in:</p>
-      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
     </div>
   );
 }
@@ -92,7 +95,8 @@ Below is an example on how to use `StyledFirebaseAuth` with a state change upon 
 // Import FirebaseAuth and firebase.
 import React, { useEffect, useState } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import firebase from 'firebase';
+import { initializeApp } from 'firebase/app';
+import { getAuth, onAuthStateChanged, signOut, EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 // Configure Firebase.
 const config = {
@@ -100,7 +104,7 @@ const config = {
   authDomain: 'myproject-1234.firebaseapp.com',
   // ...
 };
-firebase.initializeApp(config);
+const firebaseApp = initializeApp(firebaseConfig);
 
 // Configure FirebaseUI.
 const uiConfig = {
@@ -108,8 +112,8 @@ const uiConfig = {
   signInFlow: 'popup',
   // We will display Google and Facebook as auth providers.
   signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID
+    GoogleAuthProvider.PROVIDER_ID,
+    FacebookAuthProvider.PROVIDER_ID
   ],
   callbacks: {
     // Avoid redirects after sign-in.
@@ -118,11 +122,12 @@ const uiConfig = {
 };
 
 function SignInScreen() {
+  const auth = getAuth(firebaseApp);
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
 
   // Listen to the Firebase Auth state and set the local state.
   useEffect(() => {
-    const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
+    const unregisterAuthObserver = onAuthStateChanged(auth, user => {
       setIsSignedIn(!!user);
     });
     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
@@ -133,15 +138,15 @@ function SignInScreen() {
       <div>
         <h1>My App</h1>
         <p>Please sign-in:</p>
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       </div>
     );
   }
   return (
     <div>
       <h1>My App</h1>
-      <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
-      <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
+      <p>Welcome {auth.currentUser.displayName}! You are now signed-in!</p>
+      <a onClick={() => signOut(auth)}>Sign-out</a>
     </div>
   );
 }
@@ -161,7 +166,7 @@ return (
   <div>
     <h1>My App</h1>
     <p>Please sign-in:</p>
-    <StyledFirebaseAuth uiCallback={ui => ui.disableAutoSignIn()} uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
+    <StyledFirebaseAuth uiCallback={ui => ui.disableAutoSignIn()} uiConfig={uiConfig} firebaseAuth={auth}/>
   </div>
 );
 ```
