@@ -33,7 +33,7 @@
     "firebase": "^8.2.4"
   },
   "dependencies": {
-    "firebaseui": "^4.8.0"
+    "firebaseui": "^0.600.0-rc.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",
