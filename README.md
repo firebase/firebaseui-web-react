@@ -49,7 +49,7 @@ Below is an example on how to use `FirebaseAuth` with a redirect upon sign-in:
 import React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { initializeApp } from 'firebase/app';
-import { getAuth, EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, FacebookAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 // Configure Firebase.
 const config = {
@@ -57,7 +57,7 @@ const config = {
   authDomain: 'myproject-1234.firebaseapp.com',
   // ...
 };
-const firebaseApp = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(config);
 
 // Configure FirebaseUI.
 const uiConfig = {
@@ -96,7 +96,7 @@ Below is an example on how to use `StyledFirebaseAuth` with a state change upon 
 import React, { useEffect, useState } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged, signOut, EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signOut, FacebookAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 // Configure Firebase.
 const config = {
@@ -104,7 +104,7 @@ const config = {
   authDomain: 'myproject-1234.firebaseapp.com',
   // ...
 };
-const firebaseApp = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(config);
 
 // Configure FirebaseUI.
 const uiConfig = {
