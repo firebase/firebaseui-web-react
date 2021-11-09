@@ -19,9 +19,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Firebase.
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import StyledFirebaseAuth from '../../dist/StyledFirebaseAuth';
 
 // Styles
 import styles from './app.css'; // This uses CSS modules.
