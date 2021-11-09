@@ -19,8 +19,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Firebase.
-import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged, signOut, EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import firebase from 'firebase/compat/app';
 import StyledFirebaseAuth from '../../dist/StyledFirebaseAuth';
 
 // Styles
@@ -31,19 +30,17 @@ import './firebaseui-styling.global.css'; // Import globally.
 const firebaseConfig = require('./firebase-config.json').result.sdkConfig;
 
 // Instantiate a Firebase app.
-const firebaseApp = initializeApp(firebaseConfig);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 /**
  * The Splash Page containing the login UI.
  */
 class App extends React.Component {
-  auth = getAuth(firebaseApp)
-
   uiConfig = {
     signInFlow: 'popup',
     signInOptions: [
-      GoogleAuthProvider.PROVIDER_ID,
-      EmailAuthProvider.PROVIDER_ID,
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
     ],
     callbacks: {
       signInSuccessWithAuthResult: () => false,
@@ -58,7 +55,7 @@ class App extends React.Component {
    * @inheritDoc
    */
   componentDidMount() {
-    this.unregisterAuthObserver = onAuthStateChanged(this.auth, (user) => {
+    this.unregisterAuthObserver = firebaseApp.auth().onAuthStateChanged((user) => {
       this.setState({isSignedIn: !!user});
     });
   }
@@ -83,13 +80,13 @@ class App extends React.Component {
         {this.state.isSignedIn !== undefined && !this.state.isSignedIn &&
           <div>
             <StyledFirebaseAuth className={styles.firebaseUi} uiConfig={this.uiConfig}
-                                firebaseAuth={this.auth}/>
+                                firebaseAuth={firebaseApp.auth()}/>
           </div>
         }
         {this.state.isSignedIn &&
           <div className={styles.signedIn}>
-            Hello {this.auth.currentUser.displayName}. You are now signed In!
-            <a className={styles.button} onClick={() => signOut(this.auth)}>Sign-out</a>
+            Hello {firebaseApp.auth().currentUser.displayName}. You are now signed In!
+            <a className={styles.button} onClick={() => firebaseApp.auth().signOut()}>Sign-out</a>
           </div>
         }
       </div>
