@@ -49,6 +49,7 @@ Below is an example on how to use `FirebaseAuth` with a redirect upon sign-in:
 import React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 // Configure Firebase.
 const config = {
@@ -93,6 +94,7 @@ Below is an example on how to use `StyledFirebaseAuth` with a state change upon 
 import React, { useEffect, useState } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 // Configure Firebase.
 const config = {

@@ -20,6 +20,7 @@ import ReactDOM from 'react-dom';
 
 // Firebase.
 import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 import StyledFirebaseAuth from '../../dist/StyledFirebaseAuth';
 
 // Styles
