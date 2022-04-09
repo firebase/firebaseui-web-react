@@ -154,7 +154,7 @@ export default SignInScreen;
 ### Accessing the FirebaseUI instance
 
 To allow for further configuration you can access the firebaseUI instance before it is started.
-To do this you can pass a `uiCallback` callback function that wil be passed the Firebase UI instance. For example here is how to enable the `disableAutoSignIn()` option:
+To do this you can pass a `uiCallback` callback function that will be passed the Firebase UI instance. For example here is how to enable the `disableAutoSignIn()` option:
 
 ```js
 // ...
