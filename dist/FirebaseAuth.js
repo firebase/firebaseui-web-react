@@ -14,8 +14,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ELEMENT_ID = 'firebaseui_container';
-
 var firebaseUiDeletion = Promise.resolve();
 
 var FirebaseAuth = function (_React$Component) {
@@ -30,6 +28,9 @@ var FirebaseAuth = function (_React$Component) {
     _this.firebaseAuth = props.firebaseAuth;
     _this.className = props.className;
     _this.uiCallback = props.uiCallback;
+
+    _this.element = _react2.default.createRef();
+
     _this.unregisterAuthObserver = function () {};
     return _this;
   }
@@ -59,7 +60,7 @@ var FirebaseAuth = function (_React$Component) {
         _this2.uiCallback(_this2.firebaseUiWidget);
       }
 
-      _this2.firebaseUiWidget.start('#' + ELEMENT_ID, _this2.uiConfig);
+      _this2.firebaseUiWidget.start(_this2.element.current, _this2.uiConfig);
     });
   };
 
@@ -74,7 +75,7 @@ var FirebaseAuth = function (_React$Component) {
   };
 
   FirebaseAuth.prototype.render = function render() {
-    return _react2.default.createElement('div', { className: this.className, id: ELEMENT_ID });
+    return _react2.default.createElement('div', { className: this.className, ref: this.element });
   };
 
   return FirebaseAuth;

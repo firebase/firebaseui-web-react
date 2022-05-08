@@ -17,9 +17,6 @@
 
 import React from 'react';
 
-// Global ID for the element.
-const ELEMENT_ID = 'firebaseui_container';
-
 // Promise that resolves unless the FirebaseUI instance is currently being deleted.
 let firebaseUiDeletion = Promise.resolve();
 
@@ -40,6 +37,9 @@ export default class FirebaseAuth extends React.Component {
     this.firebaseAuth = props.firebaseAuth;
     this.className = props.className;
     this.uiCallback = props.uiCallback;
+
+    this.element = React.createRef();
+
     this.unregisterAuthObserver = () => {};
   }
 
@@ -79,7 +79,7 @@ export default class FirebaseAuth extends React.Component {
       }
 
       // Render the firebaseUi Widget.
-      this.firebaseUiWidget.start('#' + ELEMENT_ID, this.uiConfig);
+      this.firebaseUiWidget.start(this.element.current, this.uiConfig);
     });
   }
 
@@ -115,7 +115,7 @@ export default class FirebaseAuth extends React.Component {
    */
   render() {
     return (
-      <div className={this.className} id={ELEMENT_ID}/>
+      <div className={this.className} ref={this.element}/>
     );
   }
 }
