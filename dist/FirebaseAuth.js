@@ -1,85 +1,55 @@
-'use strict';
+"use strict";
 
 exports.__esModule = true;
+exports.default = void 0;
 
-var _react = require('react');
+var _react = require("react");
 
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var firebaseUiDeletion = Promise.resolve();
-
-var FirebaseAuth = function (_React$Component) {
-  _inherits(FirebaseAuth, _React$Component);
-
-  function FirebaseAuth(props) {
-    _classCallCheck(this, FirebaseAuth);
-
-    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
-
-    _this.uiConfig = props.uiConfig;
-    _this.firebaseAuth = props.firebaseAuth;
-    _this.className = props.className;
-    _this.uiCallback = props.uiCallback;
-
-    _this.element = _react2.default.createRef();
-
-    _this.unregisterAuthObserver = function () {};
-    return _this;
-  }
-
-  FirebaseAuth.prototype.componentDidMount = function componentDidMount() {
-    var _this2 = this;
+const FirebaseAuth = props => {
+  const {
+    uiConfig,
+    firebaseAuth,
+    className,
+    uiCallback
+  } = props;
+  let element = React.createRef();
+  (0, _react.useEffect)(() => {
+    let userSignedIn = false;
 
     require('firebaseui/dist/firebaseui.css');
 
-    var firebaseui = require('firebaseui');
+    const firebaseui = require('firebaseui');
 
-    return firebaseUiDeletion.then(function () {
-      _this2.firebaseUiWidget = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(_this2.firebaseAuth);
-      if (_this2.uiConfig.signInFlow === 'popup') {
-        _this2.firebaseUiWidget.reset();
+    const firebaseUiWidget = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebaseAuth);
+
+    if (uiConfig.signInFlow === 'popup') {
+      firebaseUiWidget.reset();
+    }
+
+    const unregisterAuthObserver = onAuthStateChanged(firebaseAuth, user => {
+      if (!user && userSignedIn) {
+        firebaseUiWidget.reset();
       }
 
-      _this2.userSignedIn = false;
-      _this2.unregisterAuthObserver = _this2.firebaseAuth.onAuthStateChanged(function (user) {
-        if (!user && _this2.userSignedIn) {
-          _this2.firebaseUiWidget.reset();
-        }
-        _this2.userSignedIn = !!user;
-      });
-
-      if (_this2.uiCallback) {
-        _this2.uiCallback(_this2.firebaseUiWidget);
-      }
-
-      _this2.firebaseUiWidget.start(_this2.element.current, _this2.uiConfig);
+      userSignedIn = !!user;
     });
-  };
 
-  FirebaseAuth.prototype.componentWillUnmount = function componentWillUnmount() {
-    var _this3 = this;
+    if (uiCallback) {
+      uiCallback(firebaseUiWidget);
+    }
 
-    firebaseUiDeletion = firebaseUiDeletion.then(function () {
-      _this3.unregisterAuthObserver();
-      return _this3.firebaseUiWidget.delete();
-    });
-    return firebaseUiDeletion;
-  };
+    firebaseUiWidget.start((void 0).element.current, (void 0).uiConfig);
+    return () => {
+      unregisterAuthObserver();
+      firebaseUiWidget.reset();
+    };
+  }, [uiConfig]);
+  return React.createElement("div", {
+    className: className,
+    ref: element
+  });
+};
 
-  FirebaseAuth.prototype.render = function render() {
-    return _react2.default.createElement('div', { className: this.className, ref: this.element });
-  };
-
-  return FirebaseAuth;
-}(_react2.default.Component);
-
-exports.default = FirebaseAuth;
+var _default = FirebaseAuth;
+exports.default = _default;
 //# sourceMappingURL=FirebaseAuth.js.map
