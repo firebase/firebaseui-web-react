@@ -15,13 +15,13 @@
  */
 
 // React core.
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useEffect, useState } from 'react';
+import { createRoot } from 'react-dom/client';
 
 // Firebase.
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider, EmailAuthProvider } from 'firebase/auth';
+import { StyledFirebaseAuth } from 'react-firebaseui';
 
 // Styles
 import styles from './app.css'; // This uses CSS modules.
@@ -31,69 +31,65 @@ import './firebaseui-styling.global.css'; // Import globally.
 const firebaseConfig = require('./firebase-config.json').result.sdkConfig;
 
 // Instantiate a Firebase app.
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
+const firebaseAuth = getAuth(firebaseApp);
+
+// Firebase UI config.
+const uiConfig = {
+  signInFlow: 'popup',
+  signInOptions: [
+    GoogleAuthProvider.PROVIDER_ID,
+    EmailAuthProvider.PROVIDER_ID,
+  ],
+  callbacks: {
+    signInSuccessWithAuthResult: () => false,
+  },
+};
 
 /**
  * The Splash Page containing the login UI.
  */
-class App extends React.Component {
-  uiConfig = {
-    signInFlow: 'popup',
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    ],
-    callbacks: {
-      signInSuccessWithAuthResult: () => false,
-    },
-  };
+const App = () => {
+  const [isSignedIn, setIsSignedIn] = useState(undefined);
 
-  state = {
-    isSignedIn: undefined,
-  };
-
-  /**
-   * @inheritDoc
-   */
-  componentDidMount() {
-    this.unregisterAuthObserver = firebaseApp.auth().onAuthStateChanged((user) => {
-      this.setState({isSignedIn: !!user});
+  useEffect(() => {
+    // Listen for auth state changes.
+    const unregisterAuthObserver = firebaseAuth.onAuthStateChanged((user) => {
+      setIsSignedIn(!!user);
     });
-  }
 
-  /**
-   * @inheritDoc
-   */
-  componentWillUnmount() {
-    this.unregisterAuthObserver();
-  }
+    // Unregister the auth observer on unmount.
+    return () => {
+      unregisterAuthObserver();
+    }
+  }, []);
 
-  /**
-   * @inheritDoc
-   */
-  render() {
-    return (
-      <div className={styles.container}>
-        <div className={styles.logo}>
-          <i className={styles.logoIcon + ' material-icons'}>photo</i> My App
-        </div>
-        <div className={styles.caption}>This is a cool demo app</div>
-        {this.state.isSignedIn !== undefined && !this.state.isSignedIn &&
-          <div>
-            <StyledFirebaseAuth className={styles.firebaseUi} uiConfig={this.uiConfig}
-                                firebaseAuth={firebaseApp.auth()}/>
-          </div>
-        }
-        {this.state.isSignedIn &&
-          <div className={styles.signedIn}>
-            Hello {firebaseApp.auth().currentUser.displayName}. You are now signed In!
-            <a className={styles.button} onClick={() => firebaseApp.auth().signOut()}>Sign-out</a>
-          </div>
-        }
+  return (
+    <div className={styles.container}>
+      <div className={styles.logo}>
+        <i className={styles.logoIcon + ' material-icons'}>photo</i> My App
       </div>
-    );
-  }
-}
+      <div className={styles.caption}>This is a cool demo app</div>
+      {isSignedIn !== undefined && !isSignedIn &&
+        <div>
+          <StyledFirebaseAuth
+            className={styles.firebaseUi}
+            uiConfig={uiConfig}
+            firebaseAuth={firebaseAuth}
+          />
+        </div>
+      }
+      {isSignedIn &&
+        <div className={styles.signedIn}>
+          Hello {firebaseAuth.currentUser.displayName}. You are now signed In!
+          <a className={styles.button} onClick={() => firebaseAuth.signOut()}>Sign-out</a>
+        </div>
+      }
+    </div>
+  );
+};
 
 // Load the app in the browser.
-ReactDOM.render(<App/>, document.getElementById('app'));
+const container = document.getElementById('app');
+const root = createRoot(container);
+root.render(<App />);
