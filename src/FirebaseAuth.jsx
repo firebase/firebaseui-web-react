@@ -15,7 +15,8 @@
  */
 // @flow
 
-import { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
 
 /**
  * React wrapper for the FirebaseUI Auth widget.
@@ -28,18 +29,22 @@ const FirebaseAuth = (props) => {
     uiCallback,
   } = props;
 
-  let element = React.createRef();
+  const [firebaseui, setFirebaseui] = useState(null);
+  const [userSignedIn, setUserSignedIn] = useState(false);
+
+  const elementRef = useRef(null);
 
   useEffect(() => {
-    let userSignedIn = false;
+    // Firebase UI only works on the Client. So we're loading the package only after
+    // the component has mounted, so that this works when doing server-side rendering.
+    setFirebaseui(require('firebaseui'));
+  }, []);
 
-    // Import the css only on the client.
-    require('firebaseui/dist/firebaseui.css');
+  useEffect(() => {
+    if (firebaseui === null) {
+      return;
+    }
 
-    // Firebase UI only works on the Client. So we're loading the package in `useEffect`
-    // So that this works when doing server-side rendering.
-    const firebaseui = require('firebaseui');
-  
     // Get or Create a firebaseUI instance.
     const firebaseUiWidget =
       firebaseui.auth.AuthUI.getInstance() ||
@@ -54,7 +59,7 @@ const FirebaseAuth = (props) => {
       if (!user && userSignedIn) {
         firebaseUiWidget.reset();
       }
-      userSignedIn = !!user;
+      setUserSignedIn(!!user);
     });
 
     // Trigger the callback if any was set.
@@ -63,16 +68,21 @@ const FirebaseAuth = (props) => {
     }
 
     // Render the firebaseUi Widget.
-    firebaseUiWidget.start(this.element.current, this.uiConfig);
-  
+    firebaseUiWidget.start(elementRef.current, uiConfig);
+
     return () => {
       unregisterAuthObserver();
       firebaseUiWidget.reset();
     };
-  }, [uiConfig]);
+  }, [firebaseui, uiConfig]);
+
+  if (firebaseui !== null) {
+    // Import the css only on the client.
+    require('firebaseui/dist/firebaseui.css');
+  }
 
   return (
-    <div className={className} ref={element} />
+    <div className={className} ref={elementRef} />
   );
 };
 

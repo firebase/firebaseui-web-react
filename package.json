@@ -1,6 +1,6 @@
 {
   "name": "react-firebaseui",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "description": "React wrapper for firebaseui: Javascript library for customizable UI on top of Firebase SDK",
   "files": [
     "FirebaseAuth.d.ts",
@@ -29,7 +29,7 @@
   },
   "license": "Apache-2.0",
   "peerDependencies": {
-    "firebase": "^9.8.0",
+    "firebase": ">=9",
     "react": ">=15 <=18"
   },
   "dependencies": {
@@ -61,6 +61,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.0.0",
     "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-plugin-standard": "^5.0.0",
     "react": "^18.1.0",
     "style-loader": "^3.3.1",

@@ -2,7 +2,8 @@
   "extends": [
     "plugin:flowtype/recommended",
     "google",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "plugins": [
     "flowtype"

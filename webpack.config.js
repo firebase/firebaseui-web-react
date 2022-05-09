@@ -24,12 +24,36 @@ const config = {
   output: {
     filename: 'StyledFirebaseAuth.js',
     path: path.resolve(__dirname, './dist'),
-    library: 'StyledFirebaseAuth',
-    libraryTarget: 'commonjs2',
+    library: {
+      name: 'StyledFirebaseAuth',
+      type: 'umd',
+    },
   },
   externals: {
-    'react': 'react',
-    'firebaseui': 'firebaseui',
+    react: {
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'React',
+      root: 'React',
+    },
+    firebase: {
+      commonjs: 'firebase',
+      commonjs2: 'firebase',
+      amd: 'firebase',
+      root: 'firebase',
+    },
+    'firebase/auth': {
+      commonjs: 'firebase/auth',
+      commonjs2: 'firebase/auth',
+      amd: 'firebase/auth',
+      root: 'firebase/auth',
+    },
+    firebaseui: {
+      commonjs: 'firebaseui',
+      commonjs2: 'firebaseui',
+      amd: 'firebaseui',
+      root: 'firebaseui',
+    },
   },
   devtool: 'source-map',
   resolve: {
@@ -44,14 +68,22 @@ const config = {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
         exclude: /node_modules/,
         include: path.resolve(__dirname, './src'),
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-react'],
+          },
+        },
       },
       {
         test: /\.css/,
         include: /node_modules/,
         use: ['style-loader', 'css-loader'],
-      }]}};
+      },
+    ],
+  },
+};
 
 module.exports = config;
