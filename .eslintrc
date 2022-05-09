@@ -10,7 +10,7 @@
   "rules": {
     "max-len": [2, 100, 2]
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": 2016,
     "sourceType": "module",
