@@ -1,15 +1,11 @@
 {
   "presets": [
-    "react",
-    ["env", {
-      "targets": { "node": "4.1" },
-      "loose": true,
-      "modules": "commonjs"
-    }]
+    "@babel/preset-react",
+    "@babel/preset-env"
   ],
   "plugins": [
-    "transform-class-properties",
-    "transform-object-rest-spread",
-    "remove-comments"
-  ]
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-object-rest-spread"
+  ],
+  "comments": false
 }

@@ -1,7 +1,7 @@
 {
   "presets": [
-    "react",
-    ["env", {
+    "@babel/preset-react",
+    ["@babel/preset-env", {
       "targets": {
         "browsers": "last 2 versions"
       },
@@ -10,6 +10,8 @@
     }]
   ],
   "plugins": [
-    "transform-class-properties"
+    ["@babel/plugin-proposal-class-properties", { "loose": false }],
+    ["@babel/plugin-proposal-private-methods", { "loose": false }],
+    ["@babel/plugin-proposal-private-property-in-object", { "loose": false }]
   ]
 }

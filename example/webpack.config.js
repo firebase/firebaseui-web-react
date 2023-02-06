@@ -16,7 +16,7 @@
 'use strict';
 
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
   context: __dirname,
@@ -28,6 +28,9 @@ const config = {
   },
   devtool: 'cheap-module-source-map',
   resolve: {
+    alias: {
+      react: path.resolve('./node_modules/react'),
+    },
     extensions: ['.js', '.jsx', '.json'],
   },
   stats: {
@@ -35,7 +38,7 @@ const config = {
     reasons: true,
     chunks: true,
   },
-  plugins: [new ExtractTextPlugin('./bundle.css')],
+  plugins: [new MiniCssExtractPlugin({ filename: './bundle.css' })],
   module: {
     rules: [
       {
@@ -47,40 +50,57 @@ const config = {
       {
         test: /\.css$/,
         exclude: [/\.global\./, /node_modules/],
-        loader: ExtractTextPlugin.extract(
+        use: [
+          MiniCssExtractPlugin.loader,
           {
-            fallback: 'style-loader',
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  importLoaders: 1,
-                  modules: true,
-                  autoprefixer: true,
-                  minimize: true,
-                  localIdentName: '[name]__[local]___[hash:base64:5]',
-                },
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: {
+                localIdentName: '[name]__[local]___[hash:base64:5]',
               },
-            ],
-          }),
+              sourceMap: true,
+            },
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  require('autoprefixer')(),
+                  require('cssnano')({ preset: 'default' }),
+                ],
+              },
+              sourceMap: true,
+            },
+          },
+        ],
       },
       {
         test: /\.css/,
         include: [/\.global\./, /node_modules/],
-        loader: ExtractTextPlugin.extract(
+        use: [
+          MiniCssExtractPlugin.loader,
           {
-            fallback: 'style-loader',
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  importLoaders: 1,
-                  modules: false,
-                  minimize: true,
-                },
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: false,
+            },
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  require('autoprefixer')(),
+                  require('cssnano')({ preset: 'default' }),
+                ],
               },
-            ],
-          }),
+              sourceMap: true,
+            },
+          },
+        ],
       },
     ],
   },

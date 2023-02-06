@@ -1,31 +1,36 @@
 {
   "scripts": {
     "clean": "rm -rf ./public/bundle.* ./src/firebase-config.json",
-    "build": "npm run clean && npm run createfirebaseconf; NODE_ENV=production webpack -p;",
+    "dev": "npm run clean && npm run createfirebaseconf; NODE_ENV=development webpack; npm run serve",
+    "build": "npm run clean && npm run createfirebaseconf; NODE_ENV=production webpack --mode production;",
     "createfirebaseconf": "firebase apps:sdkconfig web --json > ./src/firebase-config.json",
     "serve": "firebase serve"
   },
   "dependencies": {
-    "firebase": "^9.1.3",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-firebaseui": "^6.0.0"
+    "firebase": "^9.8.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-firebaseui": "file:../dist/"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "ajv": "^6.12.6",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-register": "^6.26.0",
-    "css-loader": "^0.28.11",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "firebase-tools": "^9.22.0",
-    "style-loader": "^0.21.0",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
+    "autoprefixer": "^10.4.7",
+    "babel-loader": "^8.0.0",
+    "css-loader": "^6.7.1",
+    "cssnano": "^5.1.7",
+    "firebase-tools": "^10.8.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "postcss": "^8.4.13",
+    "postcss-loader": "^6.2.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
   },
   "private": true
 }
