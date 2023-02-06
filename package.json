@@ -2,20 +2,7 @@
   "name": "react-firebaseui",
   "version": "7.0.0",
   "description": "React wrapper for firebaseui: Javascript library for customizable UI on top of Firebase SDK",
-  "files": [
-    "FirebaseAuth.d.ts",
-    "FirebaseAuth.js",
-    "FirebaseAuth.js.map",
-    "index.d.ts",
-    "index.js",
-    "index.js.map",
-    "LICENSE",
-    "package.json",
-    "README.md",
-    "StyledFirebaseAuth.d.ts",
-    "StyledFirebaseAuth.js",
-    "StyledFirebaseAuth.js.map"
-  ],
+  "files": ["dist/*"],
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf ./dist",
