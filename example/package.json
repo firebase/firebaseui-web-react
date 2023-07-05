@@ -22,7 +22,7 @@
     "babel-register": "^6.26.0",
     "css-loader": "^0.28.11",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "firebase-tools": "^9.22.0",
+    "firebase-tools": "^12.4.2",
     "style-loader": "^0.21.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
